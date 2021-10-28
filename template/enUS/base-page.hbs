@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+		<link rel="stylesheet" href="{{STATIC_BASE_URL}}/css/w3.css" />
+		<link rel="stylesheet" href="{{STATIC_BASE_URL}}/css/jquery-ui.css">
+
+		<script src="https://kit.fontawesome.com/59d19567d5.js"></script>
+		<script src="{{STATIC_BASE_URL}}/js/jquery-1.12.4.min.js"></script>
+		<script defer="defer" src="{{STATIC_BASE_URL}}/js/jquery-ui.js"></script>
+		<script src="{{STATIC_BASE_URL}}/js/site-enUS.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+		<script src="{{STATIC_BASE_URL}}/js/helpers.js"></script>
+
+{{#block "head_content"}}
+{{/block}}
+
+		<link rel="stylesheet" href="{{STATIC_BASE_URL}}/css/site-enUS.css" />
+	</head>
+	<body style="height: 100%; font-family: 'Droid Sans', sans-serif; ">
+		<a name="top"></a>
+		<div class="top-box w3-top w3-padding-32 ">
+		</div>
+		<div class="w3-top w3-2017-navy-peony ">
+			<div class="w3-bar w3-content ">
+				<a class="w3-bar-item w3-button font-weight-bold " href="/">Home</a>
+			</div>
+		</div>
+{{#block "body_content"}}
+{{/block}}
+
+		<footer class="w3-center">
+			<div class="w3-padding-16 w3-white ">
+				<span>CHOICE Reports</span>
+			</div>
+			<div class="w3-black ">
+				<div class="w3-padding-16 ">
+					<a href="https://github.com/opendatapolicing/opendatapolicing" class="">This site is open source.</a>
+					<a href="https://www.openshift.com/products/online/"><span class="">Powered by </span><img alt="" class="w3-image " style="display: inline-block; width: 100px; margin: 0 10px;" src="https://computate.neocities.org/scolaire/svg/openshift.svg"></a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

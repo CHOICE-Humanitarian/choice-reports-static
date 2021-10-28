@@ -1,0 +1,30 @@
+
+{{#partial "head_content"}}
+		<title>Open Data Policing</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="keywords" content="">
+		<script src="{{STATIC_BASE_URL}}/js/sockjs.js"></script>
+		<script src="{{STATIC_BASE_URL}}/js/vertx-eventbus.js"></script>
+
+		<script>//<![CDATA[
+		$(document).ready(function() {
+			window.eventBus = new EventBus('/eventbus');
+		});
+		//]]></script>
+{{/partial}}
+
+{{#partial "body_content"}}
+	<div id='wrap'>
+
+		<div class="w3-2017-navy-peony w3-padding-64 ">
+			<div class="w3-content w3-center ">
+				<div class="row">
+					<h1>CHOICE Reports</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+{{/partial}}
+{{> base-page}}
+
