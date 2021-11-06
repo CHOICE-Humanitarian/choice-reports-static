@@ -1,5 +1,5 @@
-
 {{> "htmPageLayout"}}
+{{#*inline "htmHeadPageLayout"}}{{> "htmTitlePageLayout"}}{{> "htmMetaPageLayout"}}{{> "htmStylePageLayout"}}{{> "htmScriptsPageLayout"}}{{> "htmScriptPageLayout"}}{{/inline}}
 {{#*inline "htmScriptsPageLayout"}}		<!-- inline "htmScriptsPageLayout" -->
 		<script src="{{staticBaseUrl}}/js/jquery-1.12.4.min.js"></script>
 		<script src="https://kit.fontawesome.com/59d19567d5.js"></script>
@@ -8,6 +8,8 @@
 		<script src="{{staticBaseUrl}}/js/jqDatePicker.js"></script>
 		<script src="{{staticBaseUrl}}/js/sockjs.js"></script>
 		<script src="{{staticBaseUrl}}/js/vertx-eventbus.js"></script>
+{{/inline}}
+{{#*inline "htmScriptPageLayout"}}		<!-- inline "htmScriptPageLayout" -->
 {{/inline}}
 {{#*inline "htmStylePageLayout"}}		<!-- inline "htmStylePageLayout" -->
 		<link rel="icon" href="{{staticBaseUrl}}/favicon.ico" />
@@ -22,33 +24,34 @@
 		<title>CHOICE Reports</title>
 {{/inline}}
 {{#*inline "htmBodyStartPageLayout"}}		<!-- inline "htmBodyStartPageLayout" -->
-		<div class="w3-center w3-white ">
-			<div class="w3-top w3-red ">
-				<div class="site-menu-custom w3-bar w3-text-black w3-padding-bottom-8 w3-padding-top-8 font-weight-bold " style="padding-left: 16px; padding-right: 16px; font-family: Overlock;">
-					<a href="{{siteBaseUrl}}/" class="w3-bar-item w3-btn "><i class="far fa-home "></i> Home</a>
-					<a href="{{siteBaseUrl}}/donor" class="w3-bar-item w3-btn "><i class="fad"></i> Donors</a>
-					<a href="{{siteBaseUrl}}/report" class="w3-bar-item w3-btn "><i class="fad"></i> Reports</a>
-					<a href="{{siteBaseUrl}}/user" class="w3-bar-item w3-btn "><i class="fad"></i> Users</a>
-	
-					<div class="site-bar-item w3-bar-item ">
-	{{#if userKey}}
-						<a class="w3-padding " href="/user/{{ userKey }}"><span class="site-menu-item"><i class="fad fa-house-user "></i>{{userName}}</span></a>
-						<a class="w3-padding " href="{{ logoutUrl }}"><span class="site-menu-item"><i class="fad fa-house-user "></i>logout</span></a>
-	{{else}}
-						<a class="w3-padding " href="/user"><span class="site-menu-item"><i class="fad fa-house-user "></i>login</span></a>
-	{{/if}}
-					</div>
-				</div>
+		<div class="w3-bar ">
+			<a href="https://choicehumanitarian.org/">
+				<img class="w3-mobile w3-bar-item " style="height: 75px" src="https://choicehumanitarian.org/wp-content/uploads/2021/05/logo-07.png"/>
+			</a>
+			<div class="w3-bar-item w3-padding-16 w3-right ">
+{{#if userKey}}
+				<a href="/user/{{ userKey }}" class="w3-mobile w3-padding w3-text-teal "><i class="fad fa-house-user w3-text-teal "></i> {{userName}}</a>
+				<a href="{{ logoutUrl }}" class="w3-mobile w3-padding w3-text-teal "><i class="fad fa-house-user w3-text-teal "></i> Logout</a>
+{{else}}
+				<a href="/user" class="w3-mobile w3-padding w3-text-teal "><i class="fad fa-house-user w3-text-teal "></i> Login</a>
+{{/if}}
+				<a href="{{siteBaseUrl}}/report" class="w3-mobile w3-padding w3-text-cyan "><i class="fad fa-file-chart-line w3-text-cyan "></i> Reports</a>
+				<a href="{{siteBaseUrl}}/donor" class="w3-mobile w3-padding w3-text-light-green "><i class="fad fa-hands-heart w3-textlight-green "></i> Donors</a>
+				<a href="{{siteBaseUrl}}/" class="w3-mobile w3-padding w3-text-indigo "><i class="fad fa-home w3-text-indigo "></i> CHOICE Reports</a>
 			</div>
 		</div>
-		<div class="w3-padding-64 w3-content ">
 {{/inline}}
 {{#*inline "htmBodyEndPageLayout"}}		<!-- inline "htmBodyEndPageLayout" -->
-		</div>
 {{/inline}}
 {{#*inline "htmBodyPageLayout"}}		<!-- inline "htmBodyPageLayout" -->
 {{#block "htmBodyStart"}}{{/block}}
 {{#block "htmBodyEnd"}}{{/block}}
+		<footer class="w3-center w3-black w3-text-white w3-padding-24 ">
+			<div class="w3-bar ">
+				<a class="w3-bar-item grow-50 w3-small " href="https://github.com/CHOICE-Humanitarian/choice-reports">This site is open source.</a>
+				<a class="w3-bar-item grow-50" href="https://www.openshift.com/products/online/"><span class="w3-small ">Powered by </span><img alt="" class="w3-image " style="display: inline-block; width: 100px; margin: 0 10px;" src="{{staticBaseUrl}}/svg/openshift.svg"/></a>
+			</div>
+		</footer>
 {{/inline}}
 {{#*inline "htmPageLayout"}}<!DOCTYPE html>
 <!-- inline "htmPageLayout" -->
@@ -56,7 +59,7 @@
 	<head>
 {{#block "htmHead"}}{{/block}}
 	</head>
-	<body class="w3-light-gray " style="height: 100%;">
+	<body class="" style="height: 100%;">
 {{#block "htmBody"}}{{/block}}
 	</body>
 </html>

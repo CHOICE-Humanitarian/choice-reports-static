@@ -1,30 +1,41 @@
-
-{{#partial "head_content"}}
-		<title>Open Data Policing</title>
+{{#partial "htmHead"}}{{> htmHeadPageLayout}}{{/partial}}
+{{#partial "htmTitle"}}
+		<title>CHOICE Reports</title>
+{{/partial}}
+{{#partial "htmMeta"}}{{> htmMetaPageLayout}}
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="keywords" content="">
-		<script src="{{STATIC_BASE_URL}}/js/sockjs.js"></script>
-		<script src="{{STATIC_BASE_URL}}/js/vertx-eventbus.js"></script>
-
+{{/partial}}
+{{#partial "htmStyle"}}{{> htmStylePageLayout}}{{/partial}}
+{{#partial "htmScripts"}}{{> htmScriptsPageLayout}}
+{{/partial}}
+{{#partial "htmScript"}}{{> htmScriptPageLayout}}
 		<script>//<![CDATA[
 		$(document).ready(function() {
 			window.eventBus = new EventBus('/eventbus');
 		});
 		//]]></script>
 {{/partial}}
-
-{{#partial "body_content"}}
-	<div id='wrap'>
-
-		<div class="w3-2017-navy-peony w3-padding-64 ">
-			<div class="w3-content w3-center ">
-				<div class="row">
-					<h1>CHOICE Reports</h1>
-				</div>
+{{#partial "htmBody"}}{{>htmBodyPageLayout}}{{/partial}}
+{{#partial "htmBodyStart"}}{{> htmBodyStartPageLayout}}
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide w3-margin-top " style="max-width:1500px;" id="home">
+	<div class="w3-display-bottom-middle w3-margin-top w3-center ">
+		<h1 class="w3-xxlarge "><span class="w3-padding "><b>CHOICE Reports</b></span></h1>
+		<div class="w3-padding-32 w3-row ">
+			<div class="w3-third ">
+				<img class="w3-image " src="{{staticBaseUrl}}/logos/CCPLogos[Denali].png"/>
+			</div>
+			<div class="w3-third ">
+				<img class="w3-image " src="{{staticBaseUrl}}/logos/CCPLogos[Everest].png"/>
+			</div>
+			<div class="w3-third ">
+				<img class="w3-image " src="{{staticBaseUrl}}/logos/CCPLogos[Kilmanjaro].png"/>
 			</div>
 		</div>
 	</div>
+</header>
 {{/partial}}
-{{> base-page}}
-
+{{#partial "htmBodyEnd"}}{{> htmBodyEndPageLayout}}{{/partial}}
+{{> PageLayout}}

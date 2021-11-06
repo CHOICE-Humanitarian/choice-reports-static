@@ -39,7 +39,7 @@
 {{#*inline "htmHeadChoiceDonorPage"}}{{> "htmTitleChoiceDonorPage"}}{{> "htmMetaChoiceDonorPage"}}{{> "htmStyleChoiceDonorPage"}}{{> "htmScriptsChoiceDonorPage"}}{{> "htmScriptChoiceDonorPage"}}{{/inline}}
 {{#*inline "htmBodyCount0ChoiceDonorPage"}}		<!-- #*inline "htmBodyCount0ChoiceDonorPage" -->
 		<h1>
-			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-pale-blue w3-hover-pale-blue">
+			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-light-green w3-hover-light-green">
 				{{#if contextIconCssClasses}}
 					<i class="contextIconCssClasses site-menu-icon "></i>
 				{{/if}}
@@ -47,7 +47,7 @@
 			</a>
 		</h1>
 		<h2>
-			<span class="w3-bar-item w3-padding w3-center w3-block w3-pale-blue">
+			<span class="w3-bar-item w3-padding w3-center w3-block w3-light-green">
 				{{#if contextIconCssClasses}}
 					<i class="contextIconCssClasses + " site-menu-icon "></i>
 				{{/if}}
@@ -57,7 +57,7 @@
 {{/inline}}
 {{#*inline "htmBodyCount1AllChoiceDonorPage"}}		<!-- #*inline "htmBodyCount1AllChoiceDonorPage" -->
 		<h1 class="w3-center ">
-			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-block w3-pale-blue w3-hover-pale-blue">
+			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-block w3-light-green w3-hover-light-green">
 			{{#if contextIconCssClasses}}
 				<i class="contextIconCssClasses site-menu-icon "></i>
 			{{/if}}
@@ -65,7 +65,7 @@
 			</a>
 		</h1>
 		<h2 class="w3-center ">
-			<span class"w3-bar-item w3-padding w3-center w3-block w3-pale-blue">
+			<span class"w3-bar-item w3-padding w3-center w3-block w3-light-green">
 				<span class="">{{choiceDonor_.objectTitle}}</span>
 			</span>
 		</h2>
@@ -73,7 +73,7 @@
 {{/inline}}
 {{#*inline "htmBodyCount1ChoiceDonorPage"}}		<!-- #*inline "htmBodyCount1ChoiceDonorPage" -->
 		<h1>
-			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-pale-blue w3-hover-pale-blue">
+			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-light-green w3-hover-light-green">
 	{{#if contextIconCssClasses}}
 				<i class="contextIconCssClasses + " site-menu-icon "></i>
 	{{/if}}
@@ -111,7 +111,7 @@
 {{/inline}}
 {{#*inline "htmBodyAllChoiceDonorPage"}}		<!-- #*inline "htmBodyAllChoiceDonorPage" -->
 		<h1>
-			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-pale-blue w3-hover-pale-blue">
+			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-light-green w3-hover-light-green">
 	{{#if contextIconCssClasses}}
 				<i class="contextIconCssClasses + " site-menu-icon "></i>
 	{{/if}}
@@ -160,7 +160,7 @@
 {{/inline}}
 {{#*inline "htmFormChoiceDonorPage_putimportChoiceDonor"}}
 		<button
-			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-pale-blue "
+			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-light-green "
 			onclick="$('#putimportChoiceDonorModal').show(); "
 			>
 			<i class="fas fa-file-import "></i>
@@ -169,7 +169,7 @@
 		<div id="putimportChoiceDonorModal" class="w3-modal w3-padding-32 ">
 			<div class="w3-modal-content ">
 				<div class="w3-card-4 ">
-					<header class="w3-container w3-pale-blue">
+					<header class="w3-container w3-light-green">
 	{{#eq "Page" classApiMethodMethod}}
 						<span class="w3-button w3-display-topright " onclick="$('#putimportChoiceDonorModal').hide(); ">×</span>
 	{{/eq}}
@@ -184,7 +184,7 @@
 								></textarea>
 						</div>
 						<button
-							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-pale-blue "
+							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-light-green "
 							onclick="putimportChoiceDonor($('#putimportChoiceDonorFormValues')); "
 							>Import donors</button>
 					</div>
@@ -194,7 +194,7 @@
 {{/inline}}
 {{#*inline "htmFormChoiceDonorPage_postChoiceDonor"}}
 		<button
-			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-pale-blue "
+			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-light-green "
 			onclick="$('#postChoiceDonorModal').show(); "
 			>
 			<i class="fas fa-file-plus "></i>
@@ -203,7 +203,7 @@
 		<div id="postChoiceDonorModal" class="w3-modal w3-padding-32 ">
 			<div class="w3-modal-content ">
 				<div class="w3-card-4 ">
-					<header class="w3-container w3-pale-blue">
+					<header class="w3-container w3-light-green">
 	{{#eq "Page" classApiMethodMethod}}
 						<span class="w3-button w3-display-topright " onclick="$('#postChoiceDonorModal').hide(); ">×</span>
 	{{/eq}}
@@ -248,7 +248,7 @@
 							</div>
 						</div>
 						<button
-							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-pale-blue "
+							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-light-green "
 							onclick="postChoiceDonor($('#postChoiceDonorForm')); "
 							>Create a donor</button>
 					</div>
@@ -258,7 +258,7 @@
 {{/inline}}
 {{#*inline "htmFormChoiceDonorPage_patchChoiceDonor"}}
 		<button
-			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-pale-blue "
+			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-light-green "
 			onclick="$('#patchChoiceDonorModal').show(); "
 			>
 			<i class="fas fa-edit "></i>
@@ -267,7 +267,7 @@
 		<div id="patchChoiceDonorModal" class="w3-modal w3-padding-32 ">
 			<div class="w3-modal-content ">
 				<div class="w3-card-4 ">
-					<header class="w3-container w3-pale-blue">
+					<header class="w3-container w3-light-green">
 	{{#eq "Page" classApiMethodMethod}}
 						<span class="w3-button w3-display-topright " onclick="$('#patchChoiceDonorModal').hide(); ">×</span>
 	{{/eq}}
@@ -307,7 +307,7 @@
 {{> "htmReportKeys" classApiMethodMethod="PATCH"}}
 							</div>
 						<button
-							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-pale-blue "
+							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-light-green "
 							onclick="patchChoiceDonor(null, $('#patchChoiceDonorFormValues')); "
 							>Modify donors</button>
 					</div>
@@ -319,7 +319,7 @@
 		<div id="searchpageChoiceDonorModal" class="w3-padding-32 ">
 			<div class="">
 				<div class="w3-card-4 ">
-					<header class="w3-container w3-pale-blue">
+					<header class="w3-container w3-light-green">
 	{{#eq "Page" classApiMethodMethod}}
 						<span class="w3-button w3-display-topright " onclick="$('#searchpageChoiceDonorModal').hide(); ">×</span>
 	{{/eq}}
@@ -364,7 +364,7 @@
 							</div>
 						</div>
 						<button
-							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-pale-blue "
+							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-light-green "
 							onclick="searchpageChoiceDonor(); "
 							></button>
 					</div>
@@ -407,7 +407,7 @@
 		{{> "tfoot1ChoiceDonorPage"}}
 	{{/inline}}
 {{#*inline "thead1ChoiceDonorPage"}}
-		<thead class="w3-pale-blue w3-hover-pale-blue">
+		<thead class="w3-light-green w3-hover-light-green">
 			{{> thead2ChoiceDonorPage}}
 		</thead>
 	{{/inline}}
@@ -432,7 +432,7 @@
 					</td>
 					<td>
 						<a href="{{pageUrlPk}}">
-							<i class="far fa-globe-americas "></i>
+							<i class="fad fa-hands-heart "></i>
 							<span class="white-space-pre-wrap ">{{objectTitle}}</span>
 						</a>
 					</td>
@@ -440,7 +440,7 @@
 		{{/each}}
 {{/inline}}
 {{#*inline "tfoot1ChoiceDonorPage"}}
-		<tfoot class="w3-pale-blue w3-hover-pale-blue">
+		<tfoot class="w3-light-green w3-hover-light-green">
 			{{> tfoot2ChoiceDonorPage}}
 		</tfoot>
 {{/inline}}
@@ -460,7 +460,7 @@
 	{{#ifContainsAnyRoles roles rolesRequired}}
 		{{#eq choiceDonorCount int1}}
 		<button
-			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-pale-blue "
+			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-light-green "
 			id="refreshThisChoiceDonorGenPage"
 			onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pk:{{pk}}' } ], {}, function() { addGlow($('#refreshThisChoiceDonorGenPage')); }, function() { addError($('#refreshThisChoiceDonorGenPage')); }); return false; ">
 			<i class="fas fa-sync-alt "></i>
@@ -478,7 +478,7 @@
 {{#*inline "htmSuggestedChoiceDonorPage"}}
 			{{#ifContainsAnyRoles roles rolesRequired}}
 					<div class="">
-						<button id="refreshAllChoiceDonorGenPage{{id}}" class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-pale-blue "
+						<button id="refreshAllChoiceDonorGenPage{{id}}" class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-light-green "
 							onclick="patch{{classSimpleName}}Vals([], {}, function() { addGlow($('#refreshAllChoiceDonorGenPage{{id}}')); }, function() { addError($('#refreshAllChoiceDonorGenPage{{id}}')); }); "
 							>
 							<i class="fas fa-sync-alt "></i>
@@ -507,7 +507,7 @@
 				{{/if}}
 				/>
 				<button
-					class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+					class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 					onclick="window.location.href = '/api/donor?q=&quot;, query1, &quot;:' + encodeURIComponent(this.previousElementSibling.value) + '&quot;, fqs, sorts, &quot;&amp;rows=&quot;, start2, &quot;&amp;rows=&quot;, rows1, &quot;'; "
 					>
 					<i class="fas fa-search "></i>
@@ -521,7 +521,7 @@
 			</div>
 			<div class="">
 				<a href="/api/donor" class="">
-					<i class="far fa-globe-americas"></i>
+					<i class="fad fa-hands-heart"></i>
 					see all the donors
 				</a>
 			</div>
@@ -533,7 +533,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorFullName">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorFullName">donor full name</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -545,7 +545,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorFullName')); $('#{{classApiMethodMethod}}_donorFullName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorFullName', null, function() { addGlow($('#{{classApiMethodMethod}}_donorFullName')); }, function() { addError($('#{{classApiMethodMethod}}_donorFullName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -599,7 +599,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorParentName">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorParentName">donor parent name</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -611,7 +611,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorParentName')); $('#{{classApiMethodMethod}}_donorParentName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorParentName', null, function() { addGlow($('#{{classApiMethodMethod}}_donorParentName')); }, function() { addError($('#{{classApiMethodMethod}}_donorParentName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -665,7 +665,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorId">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorId">donor ID</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -677,7 +677,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorId')); $('#{{classApiMethodMethod}}_donorId').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorId', null, function() { addGlow($('#{{classApiMethodMethod}}_donorId')); }, function() { addError($('#{{classApiMethodMethod}}_donorId')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -731,7 +731,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorAttributeId">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorAttributeId">donor attribute ID</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -743,7 +743,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorAttributeId')); $('#{{classApiMethodMethod}}_donorAttributeId').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorAttributeId', null, function() { addGlow($('#{{classApiMethodMethod}}_donorAttributeId')); }, function() { addError($('#{{classApiMethodMethod}}_donorAttributeId')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -797,7 +797,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorInKind">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorInKind">in kind?</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -809,7 +809,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorInKind')); $('#{{classApiMethodMethod}}_donorInKind').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorInKind', null, function() { addGlow($('#{{classApiMethodMethod}}_donorInKind')); }, function() { addError($('#{{classApiMethodMethod}}_donorInKind')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -863,7 +863,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorTotal">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorTotal">total</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -875,7 +875,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorTotal')); $('#{{classApiMethodMethod}}_donorTotal').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorTotal', null, function() { addGlow($('#{{classApiMethodMethod}}_donorTotal')); }, function() { addError($('#{{classApiMethodMethod}}_donorTotal')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -929,7 +929,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorYtd">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorYtd">YTD</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -941,7 +941,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorYtd')); $('#{{classApiMethodMethod}}_donorYtd').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorYtd', null, function() { addGlow($('#{{classApiMethodMethod}}_donorYtd')); }, function() { addError($('#{{classApiMethodMethod}}_donorYtd')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -995,7 +995,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorQ1">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorQ1">Q1</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -1007,7 +1007,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorQ1')); $('#{{classApiMethodMethod}}_donorQ1').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorQ1', null, function() { addGlow($('#{{classApiMethodMethod}}_donorQ1')); }, function() { addError($('#{{classApiMethodMethod}}_donorQ1')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -1061,7 +1061,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorQ2">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorQ2">Q2</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -1073,7 +1073,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorQ2')); $('#{{classApiMethodMethod}}_donorQ2').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorQ2', null, function() { addGlow($('#{{classApiMethodMethod}}_donorQ2')); }, function() { addError($('#{{classApiMethodMethod}}_donorQ2')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -1127,7 +1127,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorQ3">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorQ3">Q3</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -1139,7 +1139,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorQ3')); $('#{{classApiMethodMethod}}_donorQ3').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorQ3', null, function() { addGlow($('#{{classApiMethodMethod}}_donorQ3')); }, function() { addError($('#{{classApiMethodMethod}}_donorQ3')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -1193,7 +1193,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorQ4">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorQ4">Q4</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -1205,7 +1205,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorQ4')); $('#{{classApiMethodMethod}}_donorQ4').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorQ4', null, function() { addGlow($('#{{classApiMethodMethod}}_donorQ4')); }, function() { addError($('#{{classApiMethodMethod}}_donorQ4')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -1259,7 +1259,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorDonorLogoFilename">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-pale-blue">
+												<div class="w3-cell-row w3-light-green">
 													<label for="{{classApiMethodMethod}}_donorLogoFilename">Logo Filename</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -1271,7 +1271,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-pale-blue "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-light-green "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_donorLogoFilename')); $('#{{classApiMethodMethod}}_donorLogoFilename').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ChoiceDonorForm :input[name=pk]').val() }], 'setDonorLogoFilename', null, function() { addGlow($('#{{classApiMethodMethod}}_donorLogoFilename')); }, function() { addError($('#{{classApiMethodMethod}}_donorLogoFilename')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -1327,7 +1327,7 @@
 											<div class="w3-card ">
 												<div class="w3-cell-row ">
 													<a href="/report?fq=donorKey:{{choiceDonor_.pk}}" class="w3-cell w3-btn w3-center h4 w3-block h4 w3-pale-blue w3-hover-pale-blue ">
-														<i class="far fa-globe-americas "></i>
+														<i class="fad fa-file-chart-line "></i>
 														reports
 													</a>
 												</div>

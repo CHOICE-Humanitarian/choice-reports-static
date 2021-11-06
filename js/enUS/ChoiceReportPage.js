@@ -792,7 +792,7 @@ function suggestChoiceReportObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-globe-americas ');
+			var $i = $('<i>').attr('class', 'fad fa-file-chart-line ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -810,7 +810,7 @@ function suggestChoiceReportDonorKey(filters, $list, pk = null, relate=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-globe-americas ');
+			var $i = $('<i>').attr('class', 'fa fa-hands-heart ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
 			$a.append($i);
@@ -858,13 +858,13 @@ async function websocketChoiceReport(success) {
 			var $box = $('<div>').attr('class', 'w3-quarter box-' + id + ' ').attr('id', 'box-' + id).attr('data-numPATCH', numPATCH);
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-pale-blue ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-globe-americas w3-margin-right ').attr('id', 'icon-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-cyan ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'fad fa-file-chart-line w3-margin-right ').attr('id', 'icon-' + id);
 			var $headerSpan = $('<span>').attr('class', '').text('modify reports in ' + json.timeRemaining);
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-pale-blue ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			var $progress = $('<div>').attr('class', 'w3-cyan ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 			$card.append($header);
 			$header.append($i);
 			$header.append($headerSpan);

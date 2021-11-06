@@ -7,6 +7,7 @@
 		<script src="{{staticBaseUrl}}/js/enUS/SiteUserPage.js"></script>
 {{/inline}}
 {{#*inline "htmScriptSiteUserPage"}}		<!-- inline "htmScriptSiteUserPage" -->
+		<script>
 			$(document).ready(function() {
 				document.onkeydown = function(evt) {
 					evt = evt || window.event;
@@ -21,17 +22,18 @@
 					}
 				};
 				window.eventBus = new EventBus('/eventbus');
-				var pk = ", Optional.ofNullable(siteRequest_.getRequestPk()).map(l -> l.toString()).orElse("null"), ";
+				var pk = {{#if pk}}{{pk}}{{else}}null{{/if}};
 				if(pk != null) {
 				}
 				websocketSiteUser(websocketSiteUserInner);
 			});
+		</script>
 {{/inline}}
-{{#*inline "htmUrlSiteUser"}}{{pageUri}}?q={{query.q}}&rows={{#if rows}}{{rows}}{{else}}{{pagination.rows}}{{/if}}&start={{#if start}}{{start}}{{else}}{{pagination.start}}{{/if}}{{#each query.fq}}{{#eq fq this}}{{else}}&fq={{fq}}:{{val}}{{/eq}}{{/each}}{{#each query.sort}}{{#eq sort this}}{{else}}&sort={{var}} {{order}}{{/eq}}{{/each}}{{/inline}}
-{{#*inline "htmHeadSiteUserPage"}}{{> "htmTitleSiteUserPage"}}{{> "htmMetaSiteUserPage"}}{{> "htmStyleSiteUserPage"}}{{> "htmScriptsSiteUserPage"}}{{/inline}}
+{{#*inline "htmUrlSiteUser"}}{{pageUri}}?q={{query.q}}&amp;rows={{#if rows}}{{rows}}{{else}}{{pagination.rows}}{{/if}}&amp;rows={{#if start}}{{start}}{{else}}{{pagination.start}}{{/if}}{{#each query.fq}}{{#eq fq this}}{{else}}&fq={{fq}}:{{val}}{{/eq}}{{/each}}{{#each query.sort}}{{#eq sort this}}{{else}}&sort={{var}} {{order}}{{/eq}}{{/each}}{{/inline}}
+{{#*inline "htmHeadSiteUserPage"}}{{> "htmTitleSiteUserPage"}}{{> "htmMetaSiteUserPage"}}{{> "htmStyleSiteUserPage"}}{{> "htmScriptsSiteUserPage"}}{{> "htmScriptSiteUserPage"}}{{/inline}}
 {{#*inline "htmBodyCount0SiteUserPage"}}		<!-- #*inline "htmBodyCount0SiteUserPage" -->
 		<h1>
-			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-gray w3-hover-gray">
+			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-teal w3-hover-teal">
 				{{#if contextIconCssClasses}}
 					<i class="contextIconCssClasses site-menu-icon "></i>
 				{{/if}}
@@ -39,7 +41,7 @@
 			</a>
 		</h1>
 		<h2>
-			<span class="w3-bar-item w3-padding w3-center w3-block w3-gray">
+			<span class="w3-bar-item w3-padding w3-center w3-block w3-teal">
 				{{#if contextIconCssClasses}}
 					<i class="contextIconCssClasses + " site-menu-icon "></i>
 				{{/if}}
@@ -48,61 +50,50 @@
 		</h2>
 {{/inline}}
 {{#*inline "htmBodyCount1AllSiteUserPage"}}		<!-- #*inline "htmBodyCount1AllSiteUserPage" -->
-		{{#if pageH1}}
-		<h1>
-			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-gray w3-hover-gray">
+		<h1 class="w3-center ">
+			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-block w3-teal w3-hover-teal">
 			{{#if contextIconCssClasses}}
 				<i class="contextIconCssClasses site-menu-icon "></i>
 			{{/if}}
-				<span class="">{{pageH1}}</span>
+				<span class="">site user</span>
 			</a>
 		</h1>
-		{{/if}}
-		{{#if pageH2}}
-		<h2>
-			<span class"w3-bar-item w3-padding w3-center w3-block w3-gray">
-				<span class="">{{pageH2}}</span>
+		<h2 class="w3-center ">
+			<span class"w3-bar-item w3-padding w3-center w3-block w3-teal">
+				<span class="">{{siteUser_.objectTitle}}</span>
 			</span>
 		</h2>
-		{{/if}}
-		{{#if pageH3}}
-		<h3>
-			<span class="w3-bar-item w3-padding w3-center w3-block w3-gray">
-				<span class="">{{pageH3}}</span>
-			</span>
-		</h3>
-		{{/if}}
 {{#block "htmForm"}}{{/block}}
 {{/inline}}
 {{#*inline "htmBodyCount1SiteUserPage"}}		<!-- #*inline "htmBodyCount1SiteUserPage" -->
 		<h1>
-			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-gray w3-hover-gray">
+			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-teal w3-hover-teal">
 	{{#if contextIconCssClasses}}
 				<i class="contextIconCssClasses + " site-menu-icon "></i>
 	{{/if}}
-				<span class="">{{pageH1}}</span>
+				<span class="">site users</span>
 			</a>
 		</h1>
 		<div>
 	{{#if pagination.pagePrevious}}
-			<a href="{{pageUri}}?start={{pagination.pagePrevious.start}}&rows={{pagination.rows}}">
+			<a href="{{pageUri}}?start={{pagination.pagePrevious.start}}&amp;rows={{pagination.rows}}">
 				<i class="fas fa-arrow-square-left "></i>
 			</a>
 	{{else}}
 			<i class="fas fa-arrow-square-left w3-opacity "></i>
 	{{/if}}
 	{{#gte pagination.rowsPrevious pagination.1L}}
-			<a href="{{pageUri}}?start={{pagination.start}}&rows={{ pagination.rowsPrevious }}">
+			<a href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsPrevious }}">
 				<i class="fas fa-minus-square "></i>
 			</a>
 	{{else}}
 			<i class="fas fa-minus-square w3-opacity "></i>
 	{{/gte}}
-			<a href="{{pageUri}}?start={{pagination.start}}&rows={{ pagination.rowsNext }}">
+			<a href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsNext }}">
 				<i class="fas fa-plus-square "></i>
 			</a>
 	{{#if pagination.pageNext}}
-			<a href="{{pageUri}}?start={{pagination.pageNext.start}}&rows={{pagination.rows}}">
+			<a href="{{pageUri}}?start={{pagination.pageNext.start}}&amp;rows={{pagination.rows}}">
 				<i class="fas fa-arrow-square-right "></i>
 			</a>
 	{{else}}
@@ -114,34 +105,34 @@
 {{/inline}}
 {{#*inline "htmBodyAllSiteUserPage"}}		<!-- #*inline "htmBodyAllSiteUserPage" -->
 		<h1>
-			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-gray w3-hover-gray">
+			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-teal w3-hover-teal">
 	{{#if contextIconCssClasses}}
 				<i class="contextIconCssClasses + " site-menu-icon "></i>
 	{{/if}}
-				<span class="">{{pageH1}}</span>
+				<span class="">site users</span>
 			</a>
 		</h1>
 		<div class="">
 			<div>
 	{{#if pagination.pagePrevious}}
-				<a href="{{pageUri}}?start={{pagination.pagePrevious.start}}&rows={{pagination.rows}}">
+				<a href="{{pageUri}}?start={{pagination.pagePrevious.start}}&amp;rows={{pagination.rows}}">
 					<i class="fas fa-arrow-square-left "></i>
 				</a>
 	{{else}}
 				<i class="fas fa-arrow-square-left w3-opacity "></i>
 	{{/if}}
 	{{#gte pagination.rowsPrevious pagination.1L}}
-				<a href="{{pageUri}}?start={{pagination.start}}&rows={{ pagination.rowsPrevious }}">
+				<a href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsPrevious }}">
 					<i class="fas fa-minus-square "></i>
 				</a>
 	{{else}}
 				<i class="fas fa-minus-square w3-opacity "></i>
 	{{/gte}}
-				<a href="{{pageUri}}?start={{pagination.start}}&rows={{ pagination.rowsNext }}">
+				<a href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsNext }}">
 					<i class="fas fa-plus-square "></i>
 				</a>
 	{{#if pagination.pageNext}}
-				<a href="{{pageUri}}?start={{pagination.pageNext.start}}&rows={{pagination.rows}}">
+				<a href="{{pageUri}}?start={{pagination.pageNext.start}}&amp;rows={{pagination.rows}}">
 					<i class="fas fa-arrow-square-right "></i>
 				</a>
 	{{else}}
@@ -158,12 +149,12 @@
 			<input name="pk" class="valuePk" type="hidden" value="{{pk}}"/>
 			<input name="focusId" type="hidden"/>
 		</form>
-{{#block "htmInput_searchpageSiteUser"}}{{/block}}
+{{#block "htmForm_searchpageSiteUser"}}{{/block}}
 	{{/if}}
 {{/inline}}
-{{#*inline "htmInputSiteUserPage_patchSiteUser"}}
+{{#*inline "htmFormSiteUserPage_patchSiteUser"}}
 		<button
-			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-gray "
+			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-teal "
 			onclick="$('#patchSiteUserModal').show(); "
 			>
 			<i class="fas fa-edit "></i>
@@ -172,13 +163,13 @@
 		<div id="patchSiteUserModal" class="w3-modal w3-padding-32 ">
 			<div class="w3-modal-content ">
 				<div class="w3-card-4 ">
-					<header class="w3-container w3-gray">
+					<header class="w3-container w3-teal">
 	{{#eq "Page" classApiMethodMethod}}
 						<span class="w3-button w3-display-topright " onclick="$('#patchSiteUserModal').hide(); ">×</span>
 	{{/eq}}
 						<h2 class="w3-padding ">Modify site users</h2>
 					</header>
-					<div class="w3-container " id="patchSiteUserFormValues">
+					<div class="" id="patchSiteUserFormValues">
 							<div class="w3-cell-row ">
 {{> "htmCreated" classApiMethodMethod="PATCH"}}
 							</div>
@@ -191,7 +182,7 @@
 {{> "htmSeeDeleted" classApiMethodMethod="PATCH"}}
 							</div>
 						<button
-							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-gray "
+							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-teal "
 							onclick="patchSiteUser(null, $('#patchSiteUserFormValues')); "
 							>Modify site users</button>
 					</div>
@@ -199,9 +190,9 @@
 			</div>
 		</div>
 {{/inline}}
-{{#*inline "htmInputSiteUserPage_postSiteUser"}}
+{{#*inline "htmFormSiteUserPage_postSiteUser"}}
 		<button
-			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-gray "
+			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-teal "
 			onclick="$('#postSiteUserModal').show(); "
 			>
 			<i class="fas fa-file-plus "></i>
@@ -210,13 +201,13 @@
 		<div id="postSiteUserModal" class="w3-modal w3-padding-32 ">
 			<div class="w3-modal-content ">
 				<div class="w3-card-4 ">
-					<header class="w3-container w3-gray">
+					<header class="w3-container w3-teal">
 	{{#eq "Page" classApiMethodMethod}}
 						<span class="w3-button w3-display-topright " onclick="$('#postSiteUserModal').hide(); ">×</span>
 	{{/eq}}
 						<h2 class="w3-padding ">Create a site user</h2>
 					</header>
-					<div class="w3-container " id="postSiteUserFormValues">
+					<div class="" id="postSiteUserFormValues">
 						<div id="postSiteUserForm">
 							<div class="w3-cell-row ">
 {{> "htmPk" classApiMethodMethod="POST"}}
@@ -232,23 +223,9 @@
 {{> "htmSeeArchived" classApiMethodMethod="POST"}}
 {{> "htmSeeDeleted" classApiMethodMethod="POST"}}
 							</div>
-							<div class="w3-cell-row ">
-{{> "htmPk" classApiMethodMethod="Page"}}
-{{> "htmCreated" classApiMethodMethod="Page"}}
-{{> "htmModified" classApiMethodMethod="Page"}}
-{{> "htmObjectId" classApiMethodMethod="Page"}}
-							</div>
-							<div class="w3-cell-row ">
-{{> "htmArchived" classApiMethodMethod="Page"}}
-{{> "htmDeleted" classApiMethodMethod="Page"}}
-							</div>
-							<div class="w3-cell-row ">
-{{> "htmSeeArchived" classApiMethodMethod="Page"}}
-{{> "htmSeeDeleted" classApiMethodMethod="Page"}}
-							</div>
 						</div>
 						<button
-							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-gray "
+							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-teal "
 							onclick="postSiteUser($('#postSiteUserForm')); "
 							>Create a site user</button>
 					</div>
@@ -256,17 +233,17 @@
 			</div>
 		</div>
 {{/inline}}
-{{#*inline "htmInputSiteUserPage_searchpageSiteUser"}}
+{{#*inline "htmFormSiteUserPage_searchpageSiteUser"}}
 		<div id="searchpageSiteUserModal" class="w3-padding-32 ">
 			<div class="">
 				<div class="w3-card-4 ">
-					<header class="w3-container w3-gray">
+					<header class="w3-container w3-teal">
 	{{#eq "Page" classApiMethodMethod}}
 						<span class="w3-button w3-display-topright " onclick="$('#searchpageSiteUserModal').hide(); ">×</span>
 	{{/eq}}
 						<h2 class="w3-padding "></h2>
 					</header>
-					<div class="w3-container " id="searchpageSiteUserFormValues">
+					<div class="" id="searchpageSiteUserFormValues">
 						<div id="searchpageSiteUserForm">
 							<div class="w3-cell-row ">
 {{> "htmPk" classApiMethodMethod="Page"}}
@@ -284,7 +261,7 @@
 							</div>
 						</div>
 						<button
-							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-gray "
+							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-teal "
 							onclick="searchpageSiteUser(); "
 							></button>
 					</div>
@@ -327,7 +304,7 @@
 		{{> "tfoot1SiteUserPage"}}
 	{{/inline}}
 {{#*inline "thead1SiteUserPage"}}
-		<thead class="w3-gray w3-hover-gray">
+		<thead class="w3-teal w3-hover-teal">
 			{{> thead2SiteUserPage}}
 		</thead>
 	{{/inline}}
@@ -347,20 +324,20 @@
 			<tr>
 					<td>
 						<a href="{{pageUrlPk}}">
-							<span>{{created}}</span>
+							<span class="white-space-pre-wrap ">{{created}}</span>
 						</a>
 					</td>
 					<td>
 						<a href="{{pageUrlPk}}">
 							<i class="far fa-user-cog "></i>
-							<span>{{objectTitle}}</span>
+							<span class="white-space-pre-wrap ">{{objectTitle}}</span>
 						</a>
 					</td>
 			</tr>
 		{{/each}}
 {{/inline}}
 {{#*inline "tfoot1SiteUserPage"}}
-		<tfoot class="w3-gray w3-hover-gray">
+		<tfoot class="w3-teal w3-hover-teal">
 			{{> tfoot2SiteUserPage}}
 		</tfoot>
 {{/inline}}
@@ -380,7 +357,7 @@
 	{{#ifContainsAnyRoles roles rolesRequired}}
 		{{#eq siteUserCount int1}}
 		<button
-			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-gray "
+			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-teal "
 			id="refreshThisSiteUserGenPage"
 			onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pk:{{pk}}' } ], {}, function() { addGlow($('#refreshThisSiteUserGenPage')); }, function() { addError($('#refreshThisSiteUserGenPage')); }); return false; ">
 			<i class="fas fa-sync-alt "></i>
@@ -397,7 +374,7 @@
 {{#*inline "htmSuggestedSiteUserPage"}}
 			{{#ifContainsAnyRoles roles rolesRequired}}
 					<div class="">
-						<button id="refreshAllSiteUserGenPage{{id}}" class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-gray "
+						<button id="refreshAllSiteUserGenPage{{id}}" class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-teal "
 							onclick="patch{{classSimpleName}}Vals([], {}, function() { addGlow($('#refreshAllSiteUserGenPage{{id}}')); }, function() { addError($('#refreshAllSiteUserGenPage{{id}}')); }); "
 							>
 							<i class="fas fa-sync-alt "></i>
@@ -420,14 +397,14 @@
 					id="suggestSiteUser{{id}}"
 					autocomplete="off"
 					oninput="suggestSiteUserObjectSuggest( [ { 'name': 'q', 'value': 'objectSuggest:' + $(this).val() }, { 'name': 'rows', 'value': '10' }, { 'name': 'fl', 'value': 'pk,pageUrlPk,objectTitle' } ], $('#suggestListSiteUser{{id}}'), {{pk}}; "
-					onkeyup="if (event.keyCode === 13) { event.preventDefault(); window.location.href = '/api/user?q={{query1}}:' + encodeURIComponent(this.value) + '{{fqs}}{{sorts}}&start={{start2}}&rows={{rows1}}"
+					onkeyup="if (event.keyCode === 13) { event.preventDefault(); window.location.href = '/api/user?q={{query1}}:' + encodeURIComponent(this.value) + '{{fqs}}{{sorts}}&amp;rows={{start2}}&amp;rows={{rows1}}"
 				{{#if listSiteUser}}
 					value="{{query2}}"
 				{{/if}}
 				/>
 				<button
-					class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-gray "
-					onclick="window.location.href = '/api/user?q=&quot;, query1, &quot;:' + encodeURIComponent(this.previousElementSibling.value) + '&quot;, fqs, sorts, &quot;&start=&quot;, start2, &quot;&rows=&quot;, rows1, &quot;'; "
+					class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
+					onclick="window.location.href = '/api/user?q=&quot;, query1, &quot;:' + encodeURIComponent(this.previousElementSibling.value) + '&quot;, fqs, sorts, &quot;&amp;rows=&quot;, start2, &quot;&amp;rows=&quot;, rows1, &quot;'; "
 					>
 					<i class="fas fa-search "></i>
 				</button>
@@ -464,7 +441,9 @@
 {{/inline}}
 
 {{#*inline "inputUserId"}}
+	{{#eq 'Page' classApiMethodMethod}}
 														<span class="varSiteUser{{pk}}UserId ">{{siteUser_.userId}}</span>
+	{{/eq}}
 {{/inline}}
 
 {{#*inline "htmUserName"}}
@@ -481,7 +460,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-gray "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_userName')); $('#{{classApiMethodMethod}}_userName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserName', null, function() { addGlow($('#{{classApiMethodMethod}}_userName')); }, function() { addError($('#{{classApiMethodMethod}}_userName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -541,7 +520,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-gray "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_userEmail')); $('#{{classApiMethodMethod}}_userEmail').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserEmail', null, function() { addGlow($('#{{classApiMethodMethod}}_userEmail')); }, function() { addError($('#{{classApiMethodMethod}}_userEmail')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -601,7 +580,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-gray "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_userFirstName')); $('#{{classApiMethodMethod}}_userFirstName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserFirstName', null, function() { addGlow($('#{{classApiMethodMethod}}_userFirstName')); }, function() { addError($('#{{classApiMethodMethod}}_userFirstName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -661,7 +640,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-gray "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_userLastName')); $('#{{classApiMethodMethod}}_userLastName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserLastName', null, function() { addGlow($('#{{classApiMethodMethod}}_userLastName')); }, function() { addError($('#{{classApiMethodMethod}}_userLastName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -721,7 +700,7 @@
 															<div class="w3-cell w3-left-align w3-cell-top ">
 																<button
 																		tabindex="-1"
-																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-gray "
+																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
 																		onclick="removeGlow($('#{{classApiMethodMethod}}_userFullName')); $('#{{classApiMethodMethod}}_userFullName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserFullName', null, function() { addGlow($('#{{classApiMethodMethod}}_userFullName')); }, function() { addError($('#{{classApiMethodMethod}}_userFullName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
@@ -772,7 +751,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}SiteUserSeeArchived">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-gray">
+												<div class="w3-cell-row w3-teal">
 													<label for="{{classApiMethodMethod}}_seeArchived">see archived</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">
@@ -835,7 +814,7 @@
 									<div class="w3-padding ">
 										<div id="suggest{{classApiMethodMethod}}SiteUserSeeDeleted">
 											<div class="w3-card ">
-												<div class="w3-cell-row w3-gray">
+												<div class="w3-cell-row w3-teal">
 													<label for="{{classApiMethodMethod}}_seeDeleted">see deleted</label>
 												</div>
 												<div class="w3-cell-row w3-padding ">

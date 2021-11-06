@@ -6,16 +6,10 @@
 {{#partial "htmScript"}}{{> htmScriptChoiceReportPage}}{{/partial}}
 {{#partial "htmBodyStart"}}{{> htmBodyStartChoiceReportPage}}{{/partial}}
 {{#partial "htmBodyEnd"}}{{> htmBodyEndChoiceReportPage}}{{/partial}}
-{{#partial "htmBody"}} {{> htmBodyChoiceReportPage}}{{/partial}}
+{{#partial "htmBody"}}{{> htmBodyChoiceReportPage}}{{/partial}}
 {{#partial "htmBodyCount0"}}{{> htmBodyCount0ChoiceReportPage}}{{/partial}}
-{{#partial "htmBodyCount1All"}}
-<a href="{{siteBaseUrl}}/display-report/{{choiceReport_.pk}}">View the report</a>
-{{> htmBodyCount1AllChoiceReportPage}}
-{{/partial}}
-{{#partial "htmBodyCount1"}}
-<a href="{{siteBaseUrl}}/display-report/{{choiceReport_.pk}}">View the report</a>
-{{> htmBodyCount1ChoiceReportPage}}
-{{/partial}}
+{{#partial "htmBodyCount1All"}}{{> htmBodyCount1AllChoiceReportPage}}{{/partial}}
+{{#partial "htmBodyCount1"}}{{> htmBodyCount1ChoiceReportPage}}{{/partial}}
 {{#partial "htmBodyAll"}}{{> htmBodyAllChoiceReportPage}}{{/partial}}
 {{#partial "htmForm"}}{{> htmFormChoiceReportPage}}{{/partial}}
 {{#partial "htmForms"}}{{> htmFormsChoiceReportPage}}{{/partial}}
