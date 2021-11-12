@@ -247,10 +247,6 @@
 {{> "htmReportKeys" classApiMethodMethod="POST"}}
 							</div>
 						</div>
-						<button
-							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-light-green "
-							onclick="postChoiceDonor($('#postChoiceDonorForm')); "
-							>Create a donor</button>
 					</div>
 				</div>
 			</div>
@@ -363,10 +359,6 @@
 {{> "htmReportKeys" classApiMethodMethod="Page"}}
 							</div>
 						</div>
-						<button
-							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-light-green "
-							onclick="searchpageChoiceDonor(); "
-							></button>
 					</div>
 				</div>
 			</div>
@@ -415,6 +407,12 @@
 			<tr>
 				<th>created</th>
 				<th></th>
+				<th>total</th>
+				<th>YTD</th>
+				<th>Q1</th>
+				<th>Q2</th>
+				<th>Q3</th>
+				<th>Q4</th>
 			</tr>
 {{/inline}}
 {{#*inline "tbody1ChoiceDonorPage"}}
@@ -427,13 +425,43 @@
 			<tr>
 					<td>
 						<a href="{{pageUrlPk}}">
-							<span class="white-space-pre-wrap ">{{created}}</span>
+							<span class="white-space-pre-wrap ">{{siteZonedDateTimeFormat created "MMM d, yyyy h:mm:ss a" siteLocale}}</span>
 						</a>
 					</td>
 					<td>
 						<a href="{{pageUrlPk}}">
 							<i class="fad fa-hands-heart "></i>
 							<span class="white-space-pre-wrap ">{{objectTitle}}</span>
+						</a>
+					</td>
+					<td>
+						<a href="{{pageUrlPk}}">
+							<span class="white-space-pre-wrap ">{{siteNumberFormat donorTotal "currency" siteLocale}}</span>
+						</a>
+					</td>
+					<td>
+						<a href="{{pageUrlPk}}">
+							<span class="white-space-pre-wrap ">{{siteNumberFormat donorYtd "currency" siteLocale}}</span>
+						</a>
+					</td>
+					<td>
+						<a href="{{pageUrlPk}}">
+							<span class="white-space-pre-wrap ">{{siteNumberFormat donorQ1 "currency" siteLocale}}</span>
+						</a>
+					</td>
+					<td>
+						<a href="{{pageUrlPk}}">
+							<span class="white-space-pre-wrap ">{{siteNumberFormat donorQ2 "currency" siteLocale}}</span>
+						</a>
+					</td>
+					<td>
+						<a href="{{pageUrlPk}}">
+							<span class="white-space-pre-wrap ">{{siteNumberFormat donorQ3 "currency" siteLocale}}</span>
+						</a>
+					</td>
+					<td>
+						<a href="{{pageUrlPk}}">
+							<span class="white-space-pre-wrap ">{{siteNumberFormat donorQ4 "currency" siteLocale}}</span>
 						</a>
 					</td>
 			</tr>
@@ -451,6 +479,30 @@
 				</td>
 			{{/if}}
 			{{#if getColumnObjectTitle}}
+				<td>
+				</td>
+			{{/if}}
+			{{#if getColumnDonorTotal}}
+				<td>
+				</td>
+			{{/if}}
+			{{#if getColumnDonorYtd}}
+				<td>
+				</td>
+			{{/if}}
+			{{#if getColumnDonorQ1}}
+				<td>
+				</td>
+			{{/if}}
+			{{#if getColumnDonorQ2}}
+				<td>
+				</td>
+			{{/if}}
+			{{#if getColumnDonorQ3}}
+				<td>
+				</td>
+			{{/if}}
+			{{#if getColumnDonorQ4}}
 				<td>
 				</td>
 			{{/if}}
@@ -1326,7 +1378,7 @@
 										<div id="suggest{{classApiMethodMethod}}ChoiceDonorReportKeys">
 											<div class="w3-card ">
 												<div class="w3-cell-row ">
-													<a href="/report?fq=donorKey:{{choiceDonor_.pk}}" class="w3-cell w3-btn w3-center h4 w3-block h4 w3-pale-blue w3-hover-pale-blue ">
+													<a href="/report?fq=donorKey:{{choiceDonor_.pk}}" class="w3-cell w3-btn w3-center h4 w3-block h4 w3-cyan w3-hover-cyan ">
 														<i class="fad fa-file-chart-line "></i>
 														reports
 													</a>
@@ -1352,7 +1404,7 @@
 	{{#eq 'Page' classApiMethodMethod}}
 																<div class="w3-cell-row ">
 																	<button
-																		 class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-pale-blue "
+																		 class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-cyan "
 																		 id="{{classApiMethodMethod}}_reportKeys_add"
 																		 onclick="$(this).addClass('w3-disabled'); this.disabled = true; this.innerHTML = 'Sending…'; postChoiceReportVals({ donorKey: '{{pk}}' }, function() { $('#{{classApiMethodMethod}}_reportKeys_add').disabled = false; $('#{{classApiMethodMethod}}_reportKeys_add').innerHTML = 'add a report'; }, function() { addError($('#{{classApiMethodMethod}}reportKeys')); });"
 																		>add a report</button>
