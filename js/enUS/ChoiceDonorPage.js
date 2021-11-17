@@ -213,7 +213,6 @@ async function patchChoiceDonor($formFilters, $formValues, pk, success, error) {
 	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
-	var valueArchived = null;
 	if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
 		valueArchived = valueArchivedSelectVal == 'true';
 	var setArchived = removeArchived ? null : valueArchived;
@@ -229,7 +228,6 @@ async function patchChoiceDonor($formFilters, $formValues, pk, success, error) {
 	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
-	var valueDeleted = null;
 	if(valueDeletedSelectVal != null && valueDeletedSelectVal !== '')
 		valueDeleted = valueDeletedSelectVal == 'true';
 	var setDeleted = removeDeleted ? null : valueDeleted;
@@ -781,6 +779,8 @@ function searchChoiceDonorFilters($formFilters) {
 
 function searchChoiceDonorVals(filters, success, error) {
 
+
+	filters.push({ name: 'sort', value: 'objectId asc' });
 	$.ajax({
 		url: '/api/donor?' + $.param(filters)
 		, dataType: 'json'
