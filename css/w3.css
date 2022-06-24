@@ -49,7 +49,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-select{padding:9px 0;width:100%;border:none;border-bottom:1px solid #ccc}
 .w3-dropdown-click,.w3-dropdown-hover{position:relative;display:inline-block;cursor:pointer}
 .w3-dropdown-hover:hover .w3-dropdown-content{display:block}
-.w3-dropdown-hover:first-child,.w3-dropdown-click:hover{background-color:#ccc;color:#000}
+.w3-dropdown-hover:first-child,.w3-dropdown-click:hover{color:#000}
 .w3-dropdown-hover:hover > .w3-button:first-child,.w3-dropdown-click:hover > .w3-button:first-child{background-color:#ccc;color:#000}
 .w3-dropdown-content{cursor:auto;color:#000;background-color:#fff;display:none;position:absolute;min-width:160px;margin:0;padding:0;z-index:1}
 .w3-check,.w3-radio{width:24px;height:24px;position:relative;top:6px}
@@ -61,10 +61,10 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-modal{z-index:3;display:none;padding-top:100px;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4)}
 .w3-modal-content{margin:auto;background-color:#fff;position:relative;padding:0;outline:0;width:600px}
 .w3-bar{width:100%;overflow:hidden}.w3-center .w3-bar{display:inline-block;width:auto}
-.w3-bar .w3-bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
+.w3-bar .w3-bar-item{float:left;width:auto;border:none;display:block;outline:0}
 .w3-bar .w3-dropdown-hover,.w3-bar .w3-dropdown-click{position:static;float:left}
 .w3-bar .w3-button{white-space:normal}
-.w3-bar-block .w3-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
+.w3-bar-block>.w3-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
 .w3-bar-block.w3-center .w3-bar-item{text-align:center}.w3-block{display:block;width:100%}
 .w3-responsive{display:block;overflow-x:auto}
 .w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row:after,.w3-row:before,.w3-row-padding:after,.w3-row-padding:before,
@@ -235,76 +235,143 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-border-pale-yellow,.w3-hover-border-pale-yellow:hover{border-color:#ffffcc!important}.w3-border-pale-blue,.w3-hover-border-pale-blue:hover{border-color:#e7ffff!important}
 
 /** https://www.w3schools.com/lib/w3-colors-2021.css **/
-.w3-2021-marigold
-{color:#fff;background-color:#FDAC53}
-.w3-2021-cerulean
-{color:#000;background-color:#9BB7D4}
-.w3-2021-rust
-{color:#fff;background-color:#B55A30}
-.w3-2021-illuminating
-{color:#000;background-color:#F5DF4D}
-.w3-2021-french-blue
-{color:#fff;background-color:#0072B5}
-.w3-2021-green-ash
-{color:#000;background-color:#A0DAA9}
-.w3-2021-burnt-coral
-{color:#fff;background-color:#E9897E}
-.w3-2021-mint
-{color:#fff;background-color:#00A170}
-.w3-2021-amethyst-orchid
-{color:#fff;background-color:#926AA6}
-.w3-2021-raspberry-sorbet
-{color:#fff;background-color:#D2386C}
-.w3-2021-inkwell
-{color:#fff;background-color:#363945}
-.w3-2021-ultimate-gray
-{color:#fff;background-color:#939597}
-.w3-2021-buttercream
-{color:#000;background-color:#EFE1CE}
-.w3-2021-desert-mist
-{color:#000;background-color:#E0B589}
-.w3-2021-willow
-{color:#fff;background-color:#9A8B4F}
+.w3-2021-marigold,.w3-hover-2021-marigold:hover {color:#fff;background-color:#FDAC53}
+.w3-border-2021-marigold,.w3-hover-border-2021-marigold:hover {border-color:#FDAC53!important}
+.w3-text-2021-marigold,.w3-hover-text-2021-marigold:hover{color:#FDAC53!important}
 
-https://www.w3schools.com/lib/w3-colors-2017.css
-.w3-2017-greenery
-{color:#fff;background-color:#92B558}
-.w3-2017-grenadine
-{color:#fff;background-color:#DC4C46}
-.w3-2017-tawny-port
-{color:#fff;background-color:#672e3b}
-.w3-2017-ballet-slipper
-{color:#000;background-color:#f3d6e4}
-.w3-2017-butterum
-{color:#fff;background-color:#c48f65}
-.w3-2017-navy-peony
-{color:#fff;background-color:#223a5e}
+.w3-2021-cerulean,.w3-hover-2021-cerulean:hover {color:#000;background-color:#9BB7D4}
+.w3-border-2021-cerulean,.w3-hover-border-2021-cerulean:hover {border-color:#9BB7D4!important}
+.w3-text-2021-cerulean,.w3-hover-text-2021-cerulean:hover{color:#9BB7D4!important}
+
+.w3-2021-rust,.w3-hover-2021-rust:hover {color:#fff;background-color:#B55A30}
+.w3-border-2021-rust,.w3-hover-border-2021-rust:hover {border-color:#B55A30!important}
+.w3-text-2021-rust,.w3-hover-text-2021-rust:hover{color:#B55A30!important}
+
+.w3-2021-illuminating,.w3-hover-2021-illuminating:hover {color:#000;background-color:#F5DF4D}
+.w3-border-2021-illuminating,.w3-hover-border-2021-illuminating:hover {border-color:#F5DF4D!important}
+.w3-text-2021-illuminating,.w3-hover-text-2021-illuminating:hover{color:#F5DF4D!important}
+
+.w3-2021-french-blue,.w3-hover-2021-french-blue:hover {color:#fff;background-color:#0072B5}
+.w3-border-2021-french-blue,.w3-hover-border-2021-french-blue:hover {border-color:#0072B5!important}
+.w3-text-2021-french-blue,.w3-hover-text-2021-french-blue:hover{color:#0072B5!important}
+
+.w3-2021-green-ash,.w3-hover-2021-green-ash:hover {color:#000;background-color:#A0DAA9}
+.w3-border-2021-green-ash,.w3-hover-border-2021-green-ash:hover {border-color:#A0DAA9!important}
+.w3-text-2021-green-ash,.w3-hover-text-2021-green-ash:hover{color:#A0DAA9!important}
+
+.w3-2021-burnt-coral,.w3-hover-2021-burnt-coral:hover {color:#fff;background-color:#E9897E}
+.w3-border-2021-burnt-coral,.w3-hover-border-2021-burnt-coral:hover {border-color:#E9897E!important}
+.w3-text-2021-burnt-coral,.w3-hover-text-2021-burnt-coral:hover{color:#E9897E!important}
+
+.w3-2021-mint,.w3-hover-2021-mint:hover {color:#fff;background-color:#00A170}
+.w3-border-2021-mint,.w3-hover-border-2021-mint:hover {border-color:#00A170!important}
+.w3-text-2021-mint,.w3-hover-text-2021-mint:hover{color:#00A170!important}
+
+.w3-2021-amethyst-orchid,.w3-hover-2021-amethyst-orchid:hover {color:#fff;background-color:#926AA6}
+.w3-border-2021-amethyst-orchid,.w3-hover-border-2021-amethyst-orchid:hover {border-color:#926AA6!important}
+.w3-text-2021-amethyst-orchid,.w3-hover-text-2021-amethyst-orchid:hover{color:#926AA6!important}
+
+.w3-2021-raspberry-sorbet,.w3-hover-2021-raspberry-sorbet:hover {color:#fff;background-color:#D2386C}
+.w3-border-2021-raspberry-sorbet,.w3-hover-border-2021-raspberry-sorbet:hover {border-color:#D2386C!important}
+.w3-text-2021-raspberry-sorbet,.w3-hover-text-2021-raspberry-sorbet:hover{color:#D2386C!important}
+
+.w3-2021-inkwell,.w3-hover-2021-inkwell:hover {color:#fff;background-color:#363945}
+.w3-border-2021-inkwell,.w3-hover-border-2021-inkwell:hover {border-color:#363945!important}
+.w3-text-2021-inkwell,.w3-hover-text-2021-inkwell:hover{color:#363945!important}
+
+.w3-2021-ultimate-gray,.w3-hover-2021-ultimate-gray:hover {color:#fff;background-color:#939597}
+.w3-border-2021-ultimate-gray,.w3-hover-border-2021-ultimate-gray:hover {border-color:#939597!important}
+.w3-text-2021-ultimate-gray,.w3-hover-text-2021-ultimate-gray:hover{color:#939597!important}
+
+.w3-2021-buttercream,.w3-hover-2021-buttercream:hover {color:#000;background-color:#EFE1CE}
+.w3-border-2021-buttercream,.w3-hover-border-2021-buttercream:hover {border-color:#EFE1CE!important}
+.w3-text-2021-buttercream,.w3-hover-text-2021-buttercream:hover{color:#EFE1CE!important}
+
+.w3-2021-desert-mist,.w3-hover-2021-desert-mist:hover {color:#000;background-color:#E0B589}
+.w3-border-2021-desert-mist,.w3-hover-border-2021-desert-mist:hover {border-color:#E0B589!important}
+.w3-text-2021-desert-mist,.w3-hover-text-2021-desert-mist:hover{color:#E0B589!important}
+
+.w3-2021-willow,.w3-hover-2021-willow:hover {color:#fff;background-color:#9A8B4F}
+.w3-border-2021-willow,.w3-hover-border-2021-willow:hover {border-color:#9A8B4F!important}
+.w3-text-2021-willow,.w3-hover-text-2021-willow:hover{color:#9A8B4F!important}
+
+/** https://www.w3schools.com/lib/w3-colors-2017.css **/
+.w3-2017-greenery,.w3-hover-2017-greenery:hover {color:#fff;background-color:#92B558}
+.w3-border-2017-greenery,.w3-hover-border-2017-greenery:hover {border-color:#92B558!important}
+.w3-text-2017-greenery,.w3-hover-text-2017-greenery:hover{color:#92B558!important}
+
+.w3-2017-grenadine,.w3-hover-2017-grenadine:hover {color:#fff;background-color:#DC4C46}
+.w3-border-2017-grenadine,.w3-hover-border-2017-grenadine:hover {border-color:#DC4C46!important}
+.w3-text-2017-grenadine,.w3-hover-text-2017-grenadine:hover{color:#DC4C46!important}
+
+.w3-2017-tawny-port,.w3-hover-2017-tawny-port:hover {color:#fff;background-color:#672e3b}
+.w3-border-2017-tawny-port,.w3-hover-border-2017-tawny-port:hover {border-color:#672e3b!important}
+.w3-text-2017-tawny-port,.w3-hover-text-2017-tawny-port:hover{color:#672e3b!important}
+
+.w3-2017-ballet-slipper,.w3-hover-2017-ballet-slipper:hover {color:#000;background-color:#f3d6e4}
+.w3-border-2017-ballet-slipper,.w3-hover-border-2017-ballet-slipper:hover {border-color:#f3d6e4!important}
+.w3-text-2017-ballet-slipper,.w3-hover-text-2017-ballet-slipper:hover{color:#f3d6e4!important}
+
+.w3-2017-butterum,.w3-hover-2017-butterum:hover {color:#fff;background-color:#c48f65}
+.w3-border-2017-butterum,.w3-hover-border-2017-butterum:hover {border-color:#c48f65!important}
+.w3-text-2017-butterum,.w3-hover-text-2017-butterum:hover{color:#c48f65!important}
+
+.w3-2017-navy-peony,.w3-hover-2017-navy-peony:hover {color:#fff;background-color:#223a5e}
+.w3-border-2017-navy-peony,.w3-hover-border-2017-navy-peony:hover {border-color:#223a5e!important}
 .w3-text-2017-navy-peony,.w3-hover-text-2017-navy-peony:hover{color:#223a5e!important}
-.w3-2017-neutral-gray,.w3-2017-neutral-grey
-{color:#fff;background-color:#898e8c}
-.w3-2017-shaded-spruce
-{color:#fff;background-color:#005960}
-.w3-2017-golden-lime
-{color:#fff;background-color:#9c9a40}
-.w3-2017-marina
-{color:#fff;background-color:#4F84C4}
-.w3-2017-autumn-maple
-{color:#fff;background-color:#d2691e}
-.w3-2017-niagara
-{color:#fff;background-color:#578CA9}
-.w3-2017-primrose-yellow
-{color:#000;background-color:#f6d155}
-.w3-2017-lapis-blue
-{color:#fff;background-color:#004b8d}
-.w3-2017-flame
-{color:#fff;background-color:#f2552c}
-.w3-2017-island-paradise
-{color:#000;background-color:#95dee3}
-.w3-2017-pale-dogwood
-{color:#000;background-color:#edcdc2}
-.w3-2017-pink-yarrow
-{color:#fff;background-color:#ce3175}
-.w3-2017-kale
-{color:#fff;background-color:#5a7247}
-.w3-2017-hazelnut
-{color:#000;background-color:#cfb095}
+
+.w3-2017-neutral-gray,.w3-hover-2017-neutral-gray:hover,.w3-2017-neutral-grey,.w3-hover-2017-neutral-grey:hover {color:#fff;background-color:#898e8c}
+.w3-border-2017-neutral-gray,.w3-hover-border-2017-neutral-gray:hover {border-color:#898e8c!important}
+.w3-text-2017-neutral-gray,.w3-hover-text-2017-neutral-gray:hover{color:#898e8c!important}
+
+.w3-2017-shaded-spruce,.w3-hover-2017-shaded-spruce:hover {color:#fff;background-color:#005960}
+.w3-border-2017-shaded-spruce,.w3-hover-border-2017-shaded-spruce:hover {border-color:#005960!important}
+.w3-text-2017-shaded-spruce,.w3-hover-text-2017-shaded-spruce:hover{color:#005960!important}
+
+.w3-2017-golden-lime,.w3-hover-2017-golden-lime:hover {color:#fff;background-color:#9c9a40}
+.w3-border-2017-golden-lime,.w3-hover-border-2017-golden-lime:hover {border-color:#9c9a40!important}
+.w3-text-2017-golden-lime,.w3-hover-text-2017-golden-lime:hover{color:#9c9a40!important}
+
+.w3-2017-marina,.w3-hover-2017-marina:hover {color:#fff;background-color:#4F84C4}
+.w3-border-2017-marina,.w3-hover-border-2017-marina:hover {border-color:#4F84C4!important}
+.w3-text-2017-marina,.w3-hover-text-2017-marina:hover{color:#4F84C4!important}
+
+.w3-2017-autumn-maple,.w3-hover-2017-autumn-maple:hover {color:#fff;background-color:#d2691e}
+.w3-border-2017-autumn-maple,.w3-hover-border-2017-autumn-maple:hover {border-color:#d2691e!important}
+.w3-text-2017-autumn-maple,.w3-hover-text-2017-autumn-maple:hover{color:#d2691e!important}
+
+.w3-2017-niagara,.w3-hover-2017-niagara:hover {color:#fff;background-color:#578CA9}
+.w3-border-2017-niagara,.w3-hover-border-2017-niagara:hover {border-color:#578CA9!important}
+.w3-text-2017-niagara,.w3-hover-text-2017-niagara:hover{color:#578CA9!important}
+
+.w3-2017-primrose-yellow,.w3-hover-2017-primrose-yellow:hover {color:#000;background-color:#f6d155}
+.w3-border-2017-primrose-yellow,.w3-hover-border-2017-primrose-yellow:hover {border-color:#f6d155!important}
+.w3-text-2017-primrose-yellow,.w3-hover-text-2017-primrose-yellow:hover{color:#f6d155!important}
+
+.w3-2017-lapis-blue,.w3-hover-2017-lapis-blue:hover {color:#fff;background-color:#004b8d}
+.w3-border-2017-lapis-blue,.w3-hover-border-2017-lapis-blue:hover {border-color:#004b8d!important}
+.w3-text-2017-lapis-blue,.w3-hover-text-2017-lapis-blue:hover{color:#004b8d!important}
+
+.w3-2017-flame,.w3-hover-2017-flame:hover {color:#fff;background-color:#f2552c}
+.w3-border-2017-flame,.w3-hover-border-2017-flame:hover {border-color:#f2552c!important}
+.w3-text-2017-flame,.w3-hover-text-2017-flame:hover{color:#f2552c!important}
+
+.w3-2017-island-paradise,.w3-hover-2017-island-paradise:hover {color:#000;background-color:#95dee3}
+.w3-border-2017-island-paradise,.w3-hover-border-2017-island-paradise:hover {border-color:#95dee3!important}
+.w3-text-2017-island-paradise,.w3-hover-text-2017-island-paradise:hover{color:#95dee3!important}
+
+.w3-2017-pale-dogwood,.w3-hover-2017-pale-dogwood:hover {color:#000;background-color:#edcdc2}
+.w3-border-2017-pale-dogwood,.w3-hover-border-2017-pale-dogwood:hover {border-color:#edcdc2!important}
+.w3-text-2017-pale-dogwood,.w3-hover-text-2017-pale-dogwood:hover{color:#edcdc2!important}
+
+.w3-2017-pink-yarrow,.w3-hover-2017-pink-yarrow:hover {color:#fff;background-color:#ce3175}
+.w3-border-2017-pink-yarrow,.w3-hover-border-2017-pink-yarrow:hover {border-color:#ce3175!important}
+.w3-text-2017-pink-yarrow,.w3-hover-text-2017-pink-yarrow:hover{color:#ce3175!important}
+
+.w3-2017-kale,.w3-hover-2017-kale:hover {color:#fff;background-color:#5a7247}
+.w3-border-2017-kale,.w3-hover-border-2017-kale:hover {border-color:#5a7247!important}
+.w3-text-2017-kale,.w3-hover-text-2017-kale:hover{color:#5a7247!important}
+
+.w3-2017-hazelnut,.w3-hover-2017-hazelnut:hover {color:#000;background-color:#cfb095}
+.w3-border-2017-hazelnut,.w3-hover-border-2017-hazelnut:hover {border-color:#cfb095!important}
+.w3-text-2017-hazelnut,.w3-hover-text-2017-hazelnut:hover{color:#cfb095!important}

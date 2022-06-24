@@ -71,13 +71,17 @@ function searchSiteUserFilters($formFilters) {
 		if(filterSeeDeleted != null && filterSeeDeleted === true)
 			filters.push({ name: 'fq', value: 'seeDeleted:' + filterSeeDeleted });
 
+		var filterNarrativeKeys = $formFilters.find('.valueNarrativeKeys').val();
+		if(filterNarrativeKeys != null && filterNarrativeKeys !== '')
+			filters.push({ name: 'fq', value: 'narrativeKeys:' + filterNarrativeKeys });
+
+		var filterEventKeys = $formFilters.find('.valueEventKeys').val();
+		if(filterEventKeys != null && filterEventKeys !== '')
+			filters.push({ name: 'fq', value: 'eventKeys:' + filterEventKeys });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-		var filterId = $formFilters.find('.valueId').val();
-		if(filterId != null && filterId !== '')
-			filters.push({ name: 'fq', value: 'id:' + filterId });
 
 		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -122,6 +126,14 @@ function searchSiteUserFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
+		var filterId = $formFilters.find('.valueId').val();
+		if(filterId != null && filterId !== '')
+			filters.push({ name: 'fq', value: 'id:' + filterId });
 
 		var filterUserKeys = $formFilters.find('.valueUserKeys').val();
 		if(filterUserKeys != null && filterUserKeys !== '')
@@ -183,6 +195,78 @@ function suggestSiteUserObjectSuggest($formFilters, $list) {
 	searchSiteUserVals($formFilters, success, error);
 }
 
+function suggestSiteUserNarrativeKeys(filters, $list, pk = null, relate=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-calendar-pen ');
+			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
+			$a.append($i);
+			$a.append($span);
+			var val = o['assigneeKey'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_narrativeKeys_' + pk + '_assigneeKey_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueNarrativeKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_narrativeKeys_" + pk + "_assigneeKey_" + o['pk'] + "'); patchSiteUserVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'NarrativeKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(relate)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#SiteUserForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchReportNarrativeVals(filters, success, error);
+}
+
+function suggestSiteUserEventKeys(filters, $list, pk = null, relate=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-calendar-star ');
+			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
+			$a.append($i);
+			$a.append($span);
+			var val = o['assigneeKey'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_eventKeys_' + pk + '_assigneeKey_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueEventKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_eventKeys_" + pk + "_assigneeKey_" + o['pk'] + "'); patchSiteUserVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'EventKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(relate)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#SiteUserForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchReportEventVals(filters, success, error);
+}
+
 // PATCH //
 
 async function patchSiteUser($formFilters, $formValues, pk, success, error) {
@@ -241,7 +325,6 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
-	var valueArchived = null;
 	if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
 		valueArchived = valueArchivedSelectVal == 'true';
 	var setArchived = removeArchived ? null : valueArchived;
@@ -257,7 +340,6 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
-	var valueDeleted = null;
 	if(valueDeletedSelectVal != null && valueDeletedSelectVal !== '')
 		valueDeleted = valueDeletedSelectVal == 'true';
 	var setDeleted = removeDeleted ? null : valueDeleted;
@@ -273,7 +355,6 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	var valueSeeArchived = $formValues.find('.valueSeeArchived').val();
 	var removeSeeArchived = $formValues.find('.removeSeeArchived').val() === 'true';
 	var valueSeeArchivedSelectVal = $formValues.find('select.setSeeArchived').val();
-	var valueSeeArchived = null;
 	if(valueSeeArchivedSelectVal != null && valueSeeArchivedSelectVal !== '')
 		valueSeeArchived = valueSeeArchivedSelectVal == 'true';
 	var setSeeArchived = removeSeeArchived ? null : valueSeeArchived;
@@ -289,7 +370,6 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	var valueSeeDeleted = $formValues.find('.valueSeeDeleted').val();
 	var removeSeeDeleted = $formValues.find('.removeSeeDeleted').val() === 'true';
 	var valueSeeDeletedSelectVal = $formValues.find('select.setSeeDeleted').val();
-	var valueSeeDeleted = null;
 	if(valueSeeDeletedSelectVal != null && valueSeeDeletedSelectVal !== '')
 		valueSeeDeleted = valueSeeDeletedSelectVal == 'true';
 	var setSeeDeleted = removeSeeDeleted ? null : valueSeeDeleted;
@@ -301,6 +381,14 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	var removeSeeDeleted = $formValues.find('.removeSeeDeleted').prop('checked');
 	if(removeSeeDeleted != null && removeSeeDeleted !== '')
 		vals['removeSeeDeleted'] = removeSeeDeleted;
+
+	var valueNarrativeKeys = $formValues.find('input.valueNarrativeKeys:checked').val();
+	if(valueNarrativeKeys != null && valueNarrativeKeys !== '')
+		vals['addNarrativeKeys'] = valueNarrativeKeys;
+
+	var valueEventKeys = $formValues.find('input.valueEventKeys:checked').val();
+	if(valueEventKeys != null && valueEventKeys !== '')
+		vals['addEventKeys'] = valueEventKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
@@ -486,13 +574,17 @@ function patchSiteUserFilters($formFilters) {
 		if(filterSeeDeleted != null && filterSeeDeleted === true)
 			filters.push({ name: 'fq', value: 'seeDeleted:' + filterSeeDeleted });
 
+		var filterNarrativeKeys = $formFilters.find('.valueNarrativeKeys').val();
+		if(filterNarrativeKeys != null && filterNarrativeKeys !== '')
+			filters.push({ name: 'fq', value: 'narrativeKeys:' + filterNarrativeKeys });
+
+		var filterEventKeys = $formFilters.find('.valueEventKeys').val();
+		if(filterEventKeys != null && filterEventKeys !== '')
+			filters.push({ name: 'fq', value: 'eventKeys:' + filterEventKeys });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-		var filterId = $formFilters.find('.valueId').val();
-		if(filterId != null && filterId !== '')
-			filters.push({ name: 'fq', value: 'id:' + filterId });
 
 		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -537,6 +629,14 @@ function patchSiteUserFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
+		var filterId = $formFilters.find('.valueId').val();
+		if(filterId != null && filterId !== '')
+			filters.push({ name: 'fq', value: 'id:' + filterId });
 
 		var filterUserKeys = $formFilters.find('.valueUserKeys').val();
 		if(filterUserKeys != null && filterUserKeys !== '')
@@ -637,6 +737,20 @@ async function postSiteUser($formValues, success, error) {
 	if(valueSeeDeleted != null && valueSeeDeleted !== '')
 		vals['seeDeleted'] = valueSeeDeleted == 'true';
 
+	var valueNarrativeKeys = [];
+	$formValues.find('input.valueNarrativeKeys:checked').each(function(index) {
+		valueNarrativeKeys.push($(this).val());
+	});
+	if(valueNarrativeKeys.length > 0)
+		vals['narrativeKeys'] = valueNarrativeKeys;
+
+	var valueEventKeys = [];
+	$formValues.find('input.valueEventKeys:checked').each(function(index) {
+		valueEventKeys.push($(this).val());
+	});
+	if(valueEventKeys.length > 0)
+		vals['eventKeys'] = valueEventKeys;
+
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
@@ -700,6 +814,26 @@ function postSiteUserVals(vals, success, error) {
 	});
 }
 
+// PUTImport //
+
+async function putimportSiteUser($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTImport_searchList').val();
+	if(json != null && json !== '')
+		putimportSiteUserVals(JSON.parse(json), success, error);
+}
+
+function putimportSiteUserVals(json, success, error) {
+	$.ajax({
+		url: '/api/user-import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
 async function websocketSiteUser(success) {
 	window.eventBus.onopen = function () {
 
@@ -716,13 +850,13 @@ async function websocketSiteUser(success) {
 			var $box = $('<div>').attr('class', 'w3-quarter box-' + id + ' ').attr('id', 'box-' + id).attr('data-numPATCH', numPATCH);
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-teal ').attr('id', 'header-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-gray ').attr('id', 'header-' + id);
 			var $i = $('<i>').attr('class', 'far fa-user-cog w3-margin-right ').attr('id', 'icon-' + id);
 			var $headerSpan = $('<span>').attr('class', '').text('modify site users in ' + json.timeRemaining);
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-teal ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			var $progress = $('<div>').attr('class', 'w3-gray ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 			$card.append($header);
 			$header.append($i);
 			$header.append($headerSpan);
@@ -746,6 +880,20 @@ async function websocketSiteUser(success) {
 				if(success)
 					success(json);
 			}
+		});
+
+		window.eventBus.registerHandler('websocketReportNarrative', function (error, message) {
+			$('#Page_narrativeKeys').trigger('oninput');
+			$('#Page_narrativeKeys_add').text('add a report narrative');
+			$('#Page_narrativeKeys_add').removeClass('w3-disabled');
+			$('#Page_narrativeKeys_add').attr('disabled', false);
+		});
+
+		window.eventBus.registerHandler('websocketReportEvent', function (error, message) {
+			$('#Page_eventKeys').trigger('oninput');
+			$('#Page_eventKeys_add').text('add a calendar item');
+			$('#Page_eventKeys_add').removeClass('w3-disabled');
+			$('#Page_eventKeys_add').attr('disabled', false);
 		});
 	}
 }
@@ -855,6 +1003,30 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				addGlow($('.inputSiteUser' + pk + 'SeeDeleted'));
 			}
+			var val = o['narrativeKeys'];
+			if(vars.includes('narrativeKeys')) {
+				$('.inputSiteUser' + pk + 'NarrativeKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'NarrativeKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'NarrativeKeys'));
+			}
+			var val = o['eventKeys'];
+			if(vars.includes('eventKeys')) {
+				$('.inputSiteUser' + pk + 'EventKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'EventKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'EventKeys'));
+			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputSiteUser' + pk + 'InheritPk').each(function() {
@@ -866,18 +1038,6 @@ async function websocketSiteUserInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'InheritPk'));
-			}
-			var val = o['id'];
-			if(vars.includes('id')) {
-				$('.inputSiteUser' + pk + 'Id').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSiteUser' + pk + 'Id').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSiteUser' + pk + 'Id'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
@@ -1011,6 +1171,30 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				addGlow($('.inputSiteUser' + pk + 'PageUrlPk'));
 			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputSiteUser' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'PageUrlApi'));
+			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputSiteUser' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'Id'));
+			}
 			var val = o['userKeys'];
 			if(vars.includes('userKeys')) {
 				$('.inputSiteUser' + pk + 'UserKeys').each(function() {
@@ -1096,5 +1280,94 @@ async function websocketSiteUserInner(apiRequest) {
 				addGlow($('.inputSiteUser' + pk + 'UserFullName'));
 			}
 		});
+	}
+}
+
+function pageGraph(apiRequest) {
+	var json = JSON.parse($('.pageForm .pageResponse').val());
+	if(json['facetCounts']) {
+		var facetCounts = json.facetCounts;
+		if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
+			var numPivots = json.responseHeader.params['facet.pivot'].split(',').length;
+			var range = facetCounts.facetRanges.ranges[Object.keys(facetCounts.facetRanges.ranges)[0]];
+			var rangeName;
+			var rangeVar;
+			var rangeVarFq;
+			var rangeCounts;
+			var rangeVals;
+			if(range) {
+				rangeName = range.name;
+				rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
+				rangeVarFq = window.varsFq[rangeVar];
+				rangeCounts = range.counts;
+				rangeVals = Object.keys(rangeCounts).map(key => key.substring(0, 10));
+			}
+			var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
+			var pivot1VarIndexed = pivot1Name;
+			if(pivot1VarIndexed.includes(','))
+				pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
+			var pivot1Var = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf('_'));
+			var pivot1VarFq = window.varsFq[pivot1Var];
+			var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
+			var pivot1Vals = Object.keys(pivot1Map);
+			var data = [];
+			var layout = {};
+			if(pivot1VarFq.classSimpleName === 'Point') {
+				layout['dragmode'] = 'zoom';
+				layout['mapbox'] = { style: 'open-street-map', center: { lat: 55.61888, lon: 13.548799 }, zoom: 11 };
+				layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+				var trace = {};
+				trace['type'] = 'scattermapbox';
+				trace['marker'] = { color: 'fuchsia', size: 6 };
+				var lat = [];
+				var lon = [];
+				var text = [];
+				var customdata = [];
+				trace['lat'] = lat;
+				trace['lon'] = lon;
+				trace['text'] = text;
+				trace['customdata'] = customdata;
+				json.response.docs.forEach((record) => {
+					var location = record.fields[pivot1VarIndexed];
+					if(location) {
+						var locationParts = location.split(',');
+						text.push('pivot1Val');
+						lat.push(parseFloat(locationParts[0]));
+						lon.push(parseFloat(locationParts[1]));
+						var vals = {};
+						var hovertemplate = '';
+						Object.entries(window.varsFq).forEach(([key, data]) => {
+							if(data.displayName) {
+								vals[data.var] = record.fields[data.varStored];
+								hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
+							}
+							customdata.push(vals);
+						});
+						customdata.push(vals);
+						trace['hovertemplate'] = hovertemplate;
+					}
+				});
+				data.push(trace);
+			} else if(range) {
+				layout['title'] = 'SiteUser';
+				layout['xaxis'] = {
+					title: rangeVarFq.displayName
+				}
+				layout['yaxis'] = {
+					title: pivot1VarFq.displayName
+				}
+				pivot1Vals.forEach((pivot1Val) => {
+					var pivot1 = pivot1Map[pivot1Val];
+					var pivot1Counts = pivot1.ranges[rangeName].counts;
+					var trace = {};
+					trace['x'] = Object.keys(pivot1Counts).map(key => key.substring(0, 10));
+					trace['y'] = Object.values(pivot1Counts);
+					trace['mode'] = 'lines+markers';
+					trace['name'] = pivot1Val;
+					data.push(trace);
+				});
+			}
+			Plotly.newPlot('htmBodyGraphBaseModelPage', data, layout);
+		}
 	}
 }

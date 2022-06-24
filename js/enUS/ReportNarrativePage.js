@@ -1,15 +1,15 @@
 
 // PUTImport //
 
-async function putimportChoiceDonor($formValues, pk, success, error) {
+async function putimportReportNarrative($formValues, pk, success, error) {
 	var json = $formValues.find('.PUTImport_searchList').val();
 	if(json != null && json !== '')
-		putimportChoiceDonorVals(JSON.parse(json), success, error);
+		putimportReportNarrativeVals(JSON.parse(json), success, error);
 }
 
-function putimportChoiceDonorVals(json, success, error) {
+function putimportReportNarrativeVals(json, success, error) {
 	$.ajax({
-		url: '/api/donor-import'
+		url: '/api/report-narrative-import'
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -21,7 +21,7 @@ function putimportChoiceDonorVals(json, success, error) {
 
 // POST //
 
-async function postChoiceDonor($formValues, success, error) {
+async function postReportNarrative($formValues, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -61,60 +61,17 @@ async function postChoiceDonor($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted == 'true';
 
-	var valueDonorFullName = $formValues.find('.valueDonorFullName').val();
-	if(valueDonorFullName != null && valueDonorFullName !== '')
-		vals['donorFullName'] = valueDonorFullName;
+	var valueScheduleKey = $formValues.find('.valueScheduleKey').val();
+	if(valueScheduleKey != null && valueScheduleKey !== '')
+		vals['scheduleKey'] = valueScheduleKey;
 
-	var valueDonorParentName = $formValues.find('.valueDonorParentName').val();
-	if(valueDonorParentName != null && valueDonorParentName !== '')
-		vals['donorParentName'] = valueDonorParentName;
+	var valueAssigneeKey = $formValues.find('.valueAssigneeKey').val();
+	if(valueAssigneeKey != null && valueAssigneeKey !== '')
+		vals['assigneeKey'] = valueAssigneeKey;
 
-	var valueDonorId = $formValues.find('.valueDonorId').val();
-	if(valueDonorId != null && valueDonorId !== '')
-		vals['donorId'] = valueDonorId;
-
-	var valueDonorAttributeId = $formValues.find('.valueDonorAttributeId').val();
-	if(valueDonorAttributeId != null && valueDonorAttributeId !== '')
-		vals['donorAttributeId'] = valueDonorAttributeId;
-
-	var valueDonorInKind = $formValues.find('.valueDonorInKind').val();
-	if(valueDonorInKind != null && valueDonorInKind !== '')
-		vals['donorInKind'] = valueDonorInKind;
-
-	var valueDonorTotal = $formValues.find('.valueDonorTotal').val();
-	if(valueDonorTotal != null && valueDonorTotal !== '')
-		vals['donorTotal'] = valueDonorTotal;
-
-	var valueDonorYtd = $formValues.find('.valueDonorYtd').val();
-	if(valueDonorYtd != null && valueDonorYtd !== '')
-		vals['donorYtd'] = valueDonorYtd;
-
-	var valueDonorQ1 = $formValues.find('.valueDonorQ1').val();
-	if(valueDonorQ1 != null && valueDonorQ1 !== '')
-		vals['donorQ1'] = valueDonorQ1;
-
-	var valueDonorQ2 = $formValues.find('.valueDonorQ2').val();
-	if(valueDonorQ2 != null && valueDonorQ2 !== '')
-		vals['donorQ2'] = valueDonorQ2;
-
-	var valueDonorQ3 = $formValues.find('.valueDonorQ3').val();
-	if(valueDonorQ3 != null && valueDonorQ3 !== '')
-		vals['donorQ3'] = valueDonorQ3;
-
-	var valueDonorQ4 = $formValues.find('.valueDonorQ4').val();
-	if(valueDonorQ4 != null && valueDonorQ4 !== '')
-		vals['donorQ4'] = valueDonorQ4;
-
-	var valueDonorLogoFilename = $formValues.find('.valueDonorLogoFilename').val();
-	if(valueDonorLogoFilename != null && valueDonorLogoFilename !== '')
-		vals['donorLogoFilename'] = valueDonorLogoFilename;
-
-	var valueReportKeys = [];
-	$formValues.find('input.valueReportKeys:checked').each(function(index) {
-		valueReportKeys.push($(this).val());
-	});
-	if(valueReportKeys.length > 0)
-		vals['reportKeys'] = valueReportKeys;
+	var valueNarrativeName = $formValues.find('.valueNarrativeName').val();
+	if(valueNarrativeName != null && valueNarrativeName !== '')
+		vals['narrativeName'] = valueNarrativeName;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
@@ -133,7 +90,7 @@ async function postChoiceDonor($formValues, success, error) {
 		vals['objectTitle'] = valueObjectTitle;
 
 	$.ajax({
-		url: '/api/donor'
+		url: '/api/report-narrative'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -143,9 +100,9 @@ async function postChoiceDonor($formValues, success, error) {
 	});
 }
 
-function postChoiceDonorVals(vals, success, error) {
+function postReportNarrativeVals(vals, success, error) {
 	$.ajax({
-		url: '/api/donor'
+		url: '/api/report-narrative'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -157,8 +114,8 @@ function postChoiceDonorVals(vals, success, error) {
 
 // PATCH //
 
-async function patchChoiceDonor($formFilters, $formValues, pk, success, error) {
-	var filters = patchChoiceDonorFilters($formFilters);
+async function patchReportNarrative($formFilters, $formValues, pk, success, error) {
+	var filters = patchReportNarrativeFilters($formFilters);
 
 	var vals = {};
 
@@ -240,153 +197,25 @@ async function patchChoiceDonor($formFilters, $formValues, pk, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var valueDonorFullName = $formValues.find('.valueDonorFullName').val();
-	var removeDonorFullName = $formValues.find('.removeDonorFullName').val() === 'true';
-	var setDonorFullName = removeDonorFullName ? null : $formValues.find('.setDonorFullName').val();
-	var addDonorFullName = $formValues.find('.addDonorFullName').val();
-	if(removeDonorFullName || setDonorFullName != null && setDonorFullName !== '')
-		vals['setDonorFullName'] = setDonorFullName;
-	if(addDonorFullName != null && addDonorFullName !== '')
-		vals['addDonorFullName'] = addDonorFullName;
-	var removeDonorFullName = $formValues.find('.removeDonorFullName').val();
-	if(removeDonorFullName != null && removeDonorFullName !== '')
-		vals['removeDonorFullName'] = removeDonorFullName;
+	var valueScheduleKey = $formValues.find('input.valueScheduleKey:checked').val();
+	if(valueScheduleKey != null && valueScheduleKey !== '')
+		vals['setScheduleKey'] = valueScheduleKey;
 
-	var valueDonorParentName = $formValues.find('.valueDonorParentName').val();
-	var removeDonorParentName = $formValues.find('.removeDonorParentName').val() === 'true';
-	var setDonorParentName = removeDonorParentName ? null : $formValues.find('.setDonorParentName').val();
-	var addDonorParentName = $formValues.find('.addDonorParentName').val();
-	if(removeDonorParentName || setDonorParentName != null && setDonorParentName !== '')
-		vals['setDonorParentName'] = setDonorParentName;
-	if(addDonorParentName != null && addDonorParentName !== '')
-		vals['addDonorParentName'] = addDonorParentName;
-	var removeDonorParentName = $formValues.find('.removeDonorParentName').val();
-	if(removeDonorParentName != null && removeDonorParentName !== '')
-		vals['removeDonorParentName'] = removeDonorParentName;
+	var valueAssigneeKey = $formValues.find('input.valueAssigneeKey:checked').val();
+	if(valueAssigneeKey != null && valueAssigneeKey !== '')
+		vals['setAssigneeKey'] = valueAssigneeKey;
 
-	var valueDonorId = $formValues.find('.valueDonorId').val();
-	var removeDonorId = $formValues.find('.removeDonorId').val() === 'true';
-	var setDonorId = removeDonorId ? null : $formValues.find('.setDonorId').val();
-	var addDonorId = $formValues.find('.addDonorId').val();
-	if(removeDonorId || setDonorId != null && setDonorId !== '')
-		vals['setDonorId'] = setDonorId;
-	if(addDonorId != null && addDonorId !== '')
-		vals['addDonorId'] = addDonorId;
-	var removeDonorId = $formValues.find('.removeDonorId').val();
-	if(removeDonorId != null && removeDonorId !== '')
-		vals['removeDonorId'] = removeDonorId;
-
-	var valueDonorAttributeId = $formValues.find('.valueDonorAttributeId').val();
-	var removeDonorAttributeId = $formValues.find('.removeDonorAttributeId').val() === 'true';
-	var setDonorAttributeId = removeDonorAttributeId ? null : $formValues.find('.setDonorAttributeId').val();
-	var addDonorAttributeId = $formValues.find('.addDonorAttributeId').val();
-	if(removeDonorAttributeId || setDonorAttributeId != null && setDonorAttributeId !== '')
-		vals['setDonorAttributeId'] = setDonorAttributeId;
-	if(addDonorAttributeId != null && addDonorAttributeId !== '')
-		vals['addDonorAttributeId'] = addDonorAttributeId;
-	var removeDonorAttributeId = $formValues.find('.removeDonorAttributeId').val();
-	if(removeDonorAttributeId != null && removeDonorAttributeId !== '')
-		vals['removeDonorAttributeId'] = removeDonorAttributeId;
-
-	var valueDonorInKind = $formValues.find('.valueDonorInKind').val();
-	var removeDonorInKind = $formValues.find('.removeDonorInKind').val() === 'true';
-	var setDonorInKind = removeDonorInKind ? null : $formValues.find('.setDonorInKind').val();
-	var addDonorInKind = $formValues.find('.addDonorInKind').val();
-	if(removeDonorInKind || setDonorInKind != null && setDonorInKind !== '')
-		vals['setDonorInKind'] = setDonorInKind;
-	if(addDonorInKind != null && addDonorInKind !== '')
-		vals['addDonorInKind'] = addDonorInKind;
-	var removeDonorInKind = $formValues.find('.removeDonorInKind').val();
-	if(removeDonorInKind != null && removeDonorInKind !== '')
-		vals['removeDonorInKind'] = removeDonorInKind;
-
-	var valueDonorTotal = $formValues.find('.valueDonorTotal').val();
-	var removeDonorTotal = $formValues.find('.removeDonorTotal').val() === 'true';
-	var setDonorTotal = removeDonorTotal ? null : $formValues.find('.setDonorTotal').val();
-	var addDonorTotal = $formValues.find('.addDonorTotal').val();
-	if(removeDonorTotal || setDonorTotal != null && setDonorTotal !== '')
-		vals['setDonorTotal'] = setDonorTotal;
-	if(addDonorTotal != null && addDonorTotal !== '')
-		vals['addDonorTotal'] = addDonorTotal;
-	var removeDonorTotal = $formValues.find('.removeDonorTotal').val();
-	if(removeDonorTotal != null && removeDonorTotal !== '')
-		vals['removeDonorTotal'] = removeDonorTotal;
-
-	var valueDonorYtd = $formValues.find('.valueDonorYtd').val();
-	var removeDonorYtd = $formValues.find('.removeDonorYtd').val() === 'true';
-	var setDonorYtd = removeDonorYtd ? null : $formValues.find('.setDonorYtd').val();
-	var addDonorYtd = $formValues.find('.addDonorYtd').val();
-	if(removeDonorYtd || setDonorYtd != null && setDonorYtd !== '')
-		vals['setDonorYtd'] = setDonorYtd;
-	if(addDonorYtd != null && addDonorYtd !== '')
-		vals['addDonorYtd'] = addDonorYtd;
-	var removeDonorYtd = $formValues.find('.removeDonorYtd').val();
-	if(removeDonorYtd != null && removeDonorYtd !== '')
-		vals['removeDonorYtd'] = removeDonorYtd;
-
-	var valueDonorQ1 = $formValues.find('.valueDonorQ1').val();
-	var removeDonorQ1 = $formValues.find('.removeDonorQ1').val() === 'true';
-	var setDonorQ1 = removeDonorQ1 ? null : $formValues.find('.setDonorQ1').val();
-	var addDonorQ1 = $formValues.find('.addDonorQ1').val();
-	if(removeDonorQ1 || setDonorQ1 != null && setDonorQ1 !== '')
-		vals['setDonorQ1'] = setDonorQ1;
-	if(addDonorQ1 != null && addDonorQ1 !== '')
-		vals['addDonorQ1'] = addDonorQ1;
-	var removeDonorQ1 = $formValues.find('.removeDonorQ1').val();
-	if(removeDonorQ1 != null && removeDonorQ1 !== '')
-		vals['removeDonorQ1'] = removeDonorQ1;
-
-	var valueDonorQ2 = $formValues.find('.valueDonorQ2').val();
-	var removeDonorQ2 = $formValues.find('.removeDonorQ2').val() === 'true';
-	var setDonorQ2 = removeDonorQ2 ? null : $formValues.find('.setDonorQ2').val();
-	var addDonorQ2 = $formValues.find('.addDonorQ2').val();
-	if(removeDonorQ2 || setDonorQ2 != null && setDonorQ2 !== '')
-		vals['setDonorQ2'] = setDonorQ2;
-	if(addDonorQ2 != null && addDonorQ2 !== '')
-		vals['addDonorQ2'] = addDonorQ2;
-	var removeDonorQ2 = $formValues.find('.removeDonorQ2').val();
-	if(removeDonorQ2 != null && removeDonorQ2 !== '')
-		vals['removeDonorQ2'] = removeDonorQ2;
-
-	var valueDonorQ3 = $formValues.find('.valueDonorQ3').val();
-	var removeDonorQ3 = $formValues.find('.removeDonorQ3').val() === 'true';
-	var setDonorQ3 = removeDonorQ3 ? null : $formValues.find('.setDonorQ3').val();
-	var addDonorQ3 = $formValues.find('.addDonorQ3').val();
-	if(removeDonorQ3 || setDonorQ3 != null && setDonorQ3 !== '')
-		vals['setDonorQ3'] = setDonorQ3;
-	if(addDonorQ3 != null && addDonorQ3 !== '')
-		vals['addDonorQ3'] = addDonorQ3;
-	var removeDonorQ3 = $formValues.find('.removeDonorQ3').val();
-	if(removeDonorQ3 != null && removeDonorQ3 !== '')
-		vals['removeDonorQ3'] = removeDonorQ3;
-
-	var valueDonorQ4 = $formValues.find('.valueDonorQ4').val();
-	var removeDonorQ4 = $formValues.find('.removeDonorQ4').val() === 'true';
-	var setDonorQ4 = removeDonorQ4 ? null : $formValues.find('.setDonorQ4').val();
-	var addDonorQ4 = $formValues.find('.addDonorQ4').val();
-	if(removeDonorQ4 || setDonorQ4 != null && setDonorQ4 !== '')
-		vals['setDonorQ4'] = setDonorQ4;
-	if(addDonorQ4 != null && addDonorQ4 !== '')
-		vals['addDonorQ4'] = addDonorQ4;
-	var removeDonorQ4 = $formValues.find('.removeDonorQ4').val();
-	if(removeDonorQ4 != null && removeDonorQ4 !== '')
-		vals['removeDonorQ4'] = removeDonorQ4;
-
-	var valueDonorLogoFilename = $formValues.find('.valueDonorLogoFilename').val();
-	var removeDonorLogoFilename = $formValues.find('.removeDonorLogoFilename').val() === 'true';
-	var setDonorLogoFilename = removeDonorLogoFilename ? null : $formValues.find('.setDonorLogoFilename').val();
-	var addDonorLogoFilename = $formValues.find('.addDonorLogoFilename').val();
-	if(removeDonorLogoFilename || setDonorLogoFilename != null && setDonorLogoFilename !== '')
-		vals['setDonorLogoFilename'] = setDonorLogoFilename;
-	if(addDonorLogoFilename != null && addDonorLogoFilename !== '')
-		vals['addDonorLogoFilename'] = addDonorLogoFilename;
-	var removeDonorLogoFilename = $formValues.find('.removeDonorLogoFilename').val();
-	if(removeDonorLogoFilename != null && removeDonorLogoFilename !== '')
-		vals['removeDonorLogoFilename'] = removeDonorLogoFilename;
-
-	var valueReportKeys = $formValues.find('input.valueReportKeys:checked').val();
-	if(valueReportKeys != null && valueReportKeys !== '')
-		vals['addReportKeys'] = valueReportKeys;
+	var valueNarrativeName = $formValues.find('.valueNarrativeName').val();
+	var removeNarrativeName = $formValues.find('.removeNarrativeName').val() === 'true';
+	var setNarrativeName = removeNarrativeName ? null : $formValues.find('.setNarrativeName').val();
+	var addNarrativeName = $formValues.find('.addNarrativeName').val();
+	if(removeNarrativeName || setNarrativeName != null && setNarrativeName !== '')
+		vals['setNarrativeName'] = setNarrativeName;
+	if(addNarrativeName != null && addNarrativeName !== '')
+		vals['addNarrativeName'] = addNarrativeName;
+	var removeNarrativeName = $formValues.find('.removeNarrativeName').val();
+	if(removeNarrativeName != null && removeNarrativeName !== '')
+		vals['removeNarrativeName'] = removeNarrativeName;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
@@ -436,10 +265,10 @@ async function patchChoiceDonor($formFilters, $formValues, pk, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchChoiceDonorVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	patchReportNarrativeVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function patchChoiceDonorFilters($formFilters) {
+function patchReportNarrativeFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
 		filters.push({ name: 'softCommit', value: 'true' });
@@ -480,57 +309,17 @@ function patchChoiceDonorFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterDonorFullName = $formFilters.find('.valueDonorFullName').val();
-		if(filterDonorFullName != null && filterDonorFullName !== '')
-			filters.push({ name: 'fq', value: 'donorFullName:' + filterDonorFullName });
+		var filterScheduleKey = $formFilters.find('.valueScheduleKey').val();
+		if(filterScheduleKey != null && filterScheduleKey !== '')
+			filters.push({ name: 'fq', value: 'scheduleKey:' + filterScheduleKey });
 
-		var filterDonorParentName = $formFilters.find('.valueDonorParentName').val();
-		if(filterDonorParentName != null && filterDonorParentName !== '')
-			filters.push({ name: 'fq', value: 'donorParentName:' + filterDonorParentName });
+		var filterAssigneeKey = $formFilters.find('.valueAssigneeKey').val();
+		if(filterAssigneeKey != null && filterAssigneeKey !== '')
+			filters.push({ name: 'fq', value: 'assigneeKey:' + filterAssigneeKey });
 
-		var filterDonorId = $formFilters.find('.valueDonorId').val();
-		if(filterDonorId != null && filterDonorId !== '')
-			filters.push({ name: 'fq', value: 'donorId:' + filterDonorId });
-
-		var filterDonorAttributeId = $formFilters.find('.valueDonorAttributeId').val();
-		if(filterDonorAttributeId != null && filterDonorAttributeId !== '')
-			filters.push({ name: 'fq', value: 'donorAttributeId:' + filterDonorAttributeId });
-
-		var filterDonorInKind = $formFilters.find('.valueDonorInKind').val();
-		if(filterDonorInKind != null && filterDonorInKind !== '')
-			filters.push({ name: 'fq', value: 'donorInKind:' + filterDonorInKind });
-
-		var filterDonorTotal = $formFilters.find('.valueDonorTotal').val();
-		if(filterDonorTotal != null && filterDonorTotal !== '')
-			filters.push({ name: 'fq', value: 'donorTotal:' + filterDonorTotal });
-
-		var filterDonorYtd = $formFilters.find('.valueDonorYtd').val();
-		if(filterDonorYtd != null && filterDonorYtd !== '')
-			filters.push({ name: 'fq', value: 'donorYtd:' + filterDonorYtd });
-
-		var filterDonorQ1 = $formFilters.find('.valueDonorQ1').val();
-		if(filterDonorQ1 != null && filterDonorQ1 !== '')
-			filters.push({ name: 'fq', value: 'donorQ1:' + filterDonorQ1 });
-
-		var filterDonorQ2 = $formFilters.find('.valueDonorQ2').val();
-		if(filterDonorQ2 != null && filterDonorQ2 !== '')
-			filters.push({ name: 'fq', value: 'donorQ2:' + filterDonorQ2 });
-
-		var filterDonorQ3 = $formFilters.find('.valueDonorQ3').val();
-		if(filterDonorQ3 != null && filterDonorQ3 !== '')
-			filters.push({ name: 'fq', value: 'donorQ3:' + filterDonorQ3 });
-
-		var filterDonorQ4 = $formFilters.find('.valueDonorQ4').val();
-		if(filterDonorQ4 != null && filterDonorQ4 !== '')
-			filters.push({ name: 'fq', value: 'donorQ4:' + filterDonorQ4 });
-
-		var filterDonorLogoFilename = $formFilters.find('.valueDonorLogoFilename').val();
-		if(filterDonorLogoFilename != null && filterDonorLogoFilename !== '')
-			filters.push({ name: 'fq', value: 'donorLogoFilename:' + filterDonorLogoFilename });
-
-		var filterReportKeys = $formFilters.find('.valueReportKeys').val();
-		if(filterReportKeys != null && filterReportKeys !== '')
-			filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
+		var filterNarrativeName = $formFilters.find('.valueNarrativeName').val();
+		if(filterNarrativeName != null && filterNarrativeName !== '')
+			filters.push({ name: 'fq', value: 'narrativeName:' + filterNarrativeName });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -591,15 +380,15 @@ function patchChoiceDonorFilters($formFilters) {
 	return filters;
 }
 
-function patchChoiceDonorVal(filters, v, val, success, error) {
+function patchReportNarrativeVal(filters, v, val, success, error) {
 	var vals = {};
 	vals[v] = val;
-	patchChoiceDonorVals(filters, vals, success, error);
+	patchReportNarrativeVals(filters, vals, success, error);
 }
 
-function patchChoiceDonorVals(filters, vals, success, error) {
+function patchReportNarrativeVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/donor?' + $.param(filters)
+		url: '/api/report-narrative?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -611,9 +400,9 @@ function patchChoiceDonorVals(filters, vals, success, error) {
 
 // GET //
 
-async function getChoiceDonor(pk) {
+async function getReportNarrative(pk) {
 	$.ajax({
-		url: '/api/donor/' + id
+		url: '/api/report-narrative/' + id
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -624,17 +413,17 @@ async function getChoiceDonor(pk) {
 
 // Search //
 
-async function searchChoiceDonor($formFilters, success, error) {
-	var filters = searchChoiceDonorFilters($formFilters);
+async function searchReportNarrative($formFilters, success, error) {
+	var filters = searchReportNarrativeFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
 	if(error == null)
 		error = function( jqXhr, textStatus, errorThrown ) {};
 
-	searchChoiceDonorVals(filters, success, error);
+	searchReportNarrativeVals(filters, success, error);
 }
 
-function searchChoiceDonorFilters($formFilters) {
+function searchReportNarrativeFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
 
@@ -674,57 +463,17 @@ function searchChoiceDonorFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterDonorFullName = $formFilters.find('.valueDonorFullName').val();
-		if(filterDonorFullName != null && filterDonorFullName !== '')
-			filters.push({ name: 'fq', value: 'donorFullName:' + filterDonorFullName });
+		var filterScheduleKey = $formFilters.find('.valueScheduleKey').val();
+		if(filterScheduleKey != null && filterScheduleKey !== '')
+			filters.push({ name: 'fq', value: 'scheduleKey:' + filterScheduleKey });
 
-		var filterDonorParentName = $formFilters.find('.valueDonorParentName').val();
-		if(filterDonorParentName != null && filterDonorParentName !== '')
-			filters.push({ name: 'fq', value: 'donorParentName:' + filterDonorParentName });
+		var filterAssigneeKey = $formFilters.find('.valueAssigneeKey').val();
+		if(filterAssigneeKey != null && filterAssigneeKey !== '')
+			filters.push({ name: 'fq', value: 'assigneeKey:' + filterAssigneeKey });
 
-		var filterDonorId = $formFilters.find('.valueDonorId').val();
-		if(filterDonorId != null && filterDonorId !== '')
-			filters.push({ name: 'fq', value: 'donorId:' + filterDonorId });
-
-		var filterDonorAttributeId = $formFilters.find('.valueDonorAttributeId').val();
-		if(filterDonorAttributeId != null && filterDonorAttributeId !== '')
-			filters.push({ name: 'fq', value: 'donorAttributeId:' + filterDonorAttributeId });
-
-		var filterDonorInKind = $formFilters.find('.valueDonorInKind').val();
-		if(filterDonorInKind != null && filterDonorInKind !== '')
-			filters.push({ name: 'fq', value: 'donorInKind:' + filterDonorInKind });
-
-		var filterDonorTotal = $formFilters.find('.valueDonorTotal').val();
-		if(filterDonorTotal != null && filterDonorTotal !== '')
-			filters.push({ name: 'fq', value: 'donorTotal:' + filterDonorTotal });
-
-		var filterDonorYtd = $formFilters.find('.valueDonorYtd').val();
-		if(filterDonorYtd != null && filterDonorYtd !== '')
-			filters.push({ name: 'fq', value: 'donorYtd:' + filterDonorYtd });
-
-		var filterDonorQ1 = $formFilters.find('.valueDonorQ1').val();
-		if(filterDonorQ1 != null && filterDonorQ1 !== '')
-			filters.push({ name: 'fq', value: 'donorQ1:' + filterDonorQ1 });
-
-		var filterDonorQ2 = $formFilters.find('.valueDonorQ2').val();
-		if(filterDonorQ2 != null && filterDonorQ2 !== '')
-			filters.push({ name: 'fq', value: 'donorQ2:' + filterDonorQ2 });
-
-		var filterDonorQ3 = $formFilters.find('.valueDonorQ3').val();
-		if(filterDonorQ3 != null && filterDonorQ3 !== '')
-			filters.push({ name: 'fq', value: 'donorQ3:' + filterDonorQ3 });
-
-		var filterDonorQ4 = $formFilters.find('.valueDonorQ4').val();
-		if(filterDonorQ4 != null && filterDonorQ4 !== '')
-			filters.push({ name: 'fq', value: 'donorQ4:' + filterDonorQ4 });
-
-		var filterDonorLogoFilename = $formFilters.find('.valueDonorLogoFilename').val();
-		if(filterDonorLogoFilename != null && filterDonorLogoFilename !== '')
-			filters.push({ name: 'fq', value: 'donorLogoFilename:' + filterDonorLogoFilename });
-
-		var filterReportKeys = $formFilters.find('.valueReportKeys').val();
-		if(filterReportKeys != null && filterReportKeys !== '')
-			filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
+		var filterNarrativeName = $formFilters.find('.valueNarrativeName').val();
+		if(filterNarrativeName != null && filterNarrativeName !== '')
+			filters.push({ name: 'fq', value: 'narrativeName:' + filterNarrativeName });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -785,12 +534,12 @@ function searchChoiceDonorFilters($formFilters) {
 	return filters;
 }
 
-function searchChoiceDonorVals(filters, success, error) {
+function searchReportNarrativeVals(filters, success, error) {
 
 
 	filters.push({ name: 'sort', value: 'objectId asc' });
 	$.ajax({
-		url: '/api/donor?' + $.param(filters)
+		url: '/api/report-narrative?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -799,11 +548,11 @@ function searchChoiceDonorVals(filters, success, error) {
 	});
 }
 
-function suggestChoiceDonorObjectSuggest($formFilters, $list) {
+function suggestReportNarrativeObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fad fa-hands-heart ');
+			var $i = $('<i>').attr('class', 'fad fa-calendar-pen ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -814,26 +563,26 @@ function suggestChoiceDonorObjectSuggest($formFilters, $list) {
 		});
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchChoiceDonorVals($formFilters, success, error);
+	searchReportNarrativeVals($formFilters, success, error);
 }
 
-function suggestChoiceDonorReportKeys(filters, $list, pk = null, relate=true) {
+function suggestReportNarrativeScheduleKey(filters, $list, pk = null, relate=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-file-chart-line ');
+			var $i = $('<i>').attr('class', 'fa fa-calendar-days ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
 			$a.append($i);
 			$a.append($span);
-			var val = o['donorKey'];
+			var val = o['narrativeKeys'];
 			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
-			$input.attr('id', 'GET_reportKeys_' + pk + '_donorKey_' + o['pk']);
+			$input.attr('id', 'GET_scheduleKey_' + pk + '_narrativeKeys_' + o['pk']);
 			$input.attr('value', o['pk']);
-			$input.attr('class', 'valueReportKeys w3-check ');
+			$input.attr('class', 'valueScheduleKey w3-check ');
 			if(pk != null) {
-				$input.attr('onchange', "var $input = $('#GET_reportKeys_" + pk + "_donorKey_" + o['pk'] + "'); patchChoiceDonorVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'ReportKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onchange', "var $input = $('#GET_scheduleKey_" + pk + "_narrativeKeys_" + o['pk'] + "'); patchReportNarrativeVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'ScheduleKey']: \"" + o['pk'] + "\" } ); ");
 				$input.attr('onclick', 'removeGlow($(this)); ');
 			}
 			$input.attr('type', 'checkbox');
@@ -845,22 +594,58 @@ function suggestChoiceDonorReportKeys(filters, $list, pk = null, relate=true) {
 			$li.append($a);
 			$list.append($li);
 		});
-		var focusId = $('#ChoiceDonorForm :input[name="focusId"]').val();
+		var focusId = $('#ReportNarrativeForm :input[name="focusId"]').val();
 		if(focusId)
 			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchChoiceReportVals(filters, success, error);
+	searchReportScheduleVals(filters, success, error);
 }
 
-async function websocketChoiceDonor(success) {
+function suggestReportNarrativeAssigneeKey(filters, $list, pk = null, relate=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-user-cog ');
+			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
+			$a.append($i);
+			$a.append($span);
+			var val = o['narrativeKeys'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_assigneeKey_' + pk + '_narrativeKeys_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueAssigneeKey w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_assigneeKey_" + pk + "_narrativeKeys_" + o['pk'] + "'); patchReportNarrativeVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'AssigneeKey']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(relate)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#ReportNarrativeForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchSiteUserVals(filters, success, error);
+}
+
+async function websocketReportNarrative(success) {
 	window.eventBus.onopen = function () {
 
-		window.eventBus.registerHandler('websocketChoiceDonor', function (error, message) {
+		window.eventBus.registerHandler('websocketReportNarrative', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
-			var pkPage = $('#ChoiceDonorForm :input[name=pk]').val();
+			var pkPage = $('#ReportNarrativeForm :input[name=pk]').val();
 			var pks = json['pks'];
 			var empty = json['empty'];
 			var numFound = parseInt(json['numFound']);
@@ -870,8 +655,8 @@ async function websocketChoiceDonor(success) {
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
 			var $header = $('<div>').attr('class', 'w3-container fa-light-green ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'fad fa-hands-heart w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify donors in ' + json.timeRemaining);
+			var $i = $('<i>').attr('class', 'fad fa-calendar-pen w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify report narratives in ' + json.timeRemaining);
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
@@ -901,15 +686,22 @@ async function websocketChoiceDonor(success) {
 			}
 		});
 
-		window.eventBus.registerHandler('websocketChoiceReport', function (error, message) {
-			$('#Page_reportKeys').trigger('oninput');
-			$('#Page_reportKeys_add').text('add a report');
-			$('#Page_reportKeys_add').removeClass('w3-disabled');
-			$('#Page_reportKeys_add').attr('disabled', false);
+		window.eventBus.registerHandler('websocketReportSchedule', function (error, message) {
+			$('#Page_scheduleKey').trigger('oninput');
+			$('#Page_scheduleKey_add').text('add a report schedule');
+			$('#Page_scheduleKey_add').removeClass('w3-disabled');
+			$('#Page_scheduleKey_add').attr('disabled', false);
+		});
+
+		window.eventBus.registerHandler('websocketSiteUser', function (error, message) {
+			$('#Page_assigneeKey').trigger('oninput');
+			$('#Page_assigneeKey_add').text('add a site user');
+			$('#Page_assigneeKey_add').removeClass('w3-disabled');
+			$('#Page_assigneeKey_add').attr('disabled', false);
 		});
 	}
 }
-async function websocketChoiceDonorInner(apiRequest) {
+async function websocketReportNarrativeInner(apiRequest) {
 	var pk = apiRequest['pk'];
 	var pks = apiRequest['pks'];
 	var classes = apiRequest['classes'];
@@ -917,403 +709,283 @@ async function websocketChoiceDonorInner(apiRequest) {
 	var empty = apiRequest['empty'];
 
 	if(pk != null) {
-		searchChoiceDonorVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+		searchReportNarrativeVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			var val = o['pk'];
 			if(vars.includes('pk')) {
-				$('.inputChoiceDonor' + pk + 'Pk').each(function() {
+				$('.inputReportNarrative' + pk + 'Pk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'Pk').each(function() {
+				$('.varReportNarrative' + pk + 'Pk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'Pk'));
+				addGlow($('.inputReportNarrative' + pk + 'Pk'));
 			}
 			var val = o['created'];
 			if(vars.includes('created')) {
-				$('.inputChoiceDonor' + pk + 'Created').each(function() {
+				$('.inputReportNarrative' + pk + 'Created').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'Created').each(function() {
+				$('.varReportNarrative' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'Created'));
+				addGlow($('.inputReportNarrative' + pk + 'Created'));
 			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
-				$('.inputChoiceDonor' + pk + 'Modified').each(function() {
+				$('.inputReportNarrative' + pk + 'Modified').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'Modified').each(function() {
+				$('.varReportNarrative' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'Modified'));
+				addGlow($('.inputReportNarrative' + pk + 'Modified'));
 			}
 			var val = o['objectId'];
 			if(vars.includes('objectId')) {
-				$('.inputChoiceDonor' + pk + 'ObjectId').each(function() {
+				$('.inputReportNarrative' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'ObjectId').each(function() {
+				$('.varReportNarrative' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'ObjectId'));
+				addGlow($('.inputReportNarrative' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
-				$('.inputChoiceDonor' + pk + 'Archived').each(function() {
+				$('.inputReportNarrative' + pk + 'Archived').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'Archived').each(function() {
+				$('.varReportNarrative' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'Archived'));
+				addGlow($('.inputReportNarrative' + pk + 'Archived'));
 			}
 			var val = o['deleted'];
 			if(vars.includes('deleted')) {
-				$('.inputChoiceDonor' + pk + 'Deleted').each(function() {
+				$('.inputReportNarrative' + pk + 'Deleted').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'Deleted').each(function() {
+				$('.varReportNarrative' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'Deleted'));
+				addGlow($('.inputReportNarrative' + pk + 'Deleted'));
 			}
-			var val = o['donorFullName'];
-			if(vars.includes('donorFullName')) {
-				$('.inputChoiceDonor' + pk + 'DonorFullName').each(function() {
+			var val = o['scheduleKey'];
+			if(vars.includes('scheduleKey')) {
+				$('.inputReportNarrative' + pk + 'ScheduleKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'DonorFullName').each(function() {
+				$('.varReportNarrative' + pk + 'ScheduleKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorFullName'));
+				addGlow($('.inputReportNarrative' + pk + 'ScheduleKey'));
 			}
-			var val = o['donorParentName'];
-			if(vars.includes('donorParentName')) {
-				$('.inputChoiceDonor' + pk + 'DonorParentName').each(function() {
+			var val = o['assigneeKey'];
+			if(vars.includes('assigneeKey')) {
+				$('.inputReportNarrative' + pk + 'AssigneeKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'DonorParentName').each(function() {
+				$('.varReportNarrative' + pk + 'AssigneeKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorParentName'));
+				addGlow($('.inputReportNarrative' + pk + 'AssigneeKey'));
 			}
-			var val = o['donorId'];
-			if(vars.includes('donorId')) {
-				$('.inputChoiceDonor' + pk + 'DonorId').each(function() {
+			var val = o['narrativeName'];
+			if(vars.includes('narrativeName')) {
+				$('.inputReportNarrative' + pk + 'NarrativeName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'DonorId').each(function() {
+				$('.varReportNarrative' + pk + 'NarrativeName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorId'));
-			}
-			var val = o['donorAttributeId'];
-			if(vars.includes('donorAttributeId')) {
-				$('.inputChoiceDonor' + pk + 'DonorAttributeId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'DonorAttributeId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorAttributeId'));
-			}
-			var val = o['donorInKind'];
-			if(vars.includes('donorInKind')) {
-				$('.inputChoiceDonor' + pk + 'DonorInKind').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'DonorInKind').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorInKind'));
-			}
-			var val = o['donorTotal'];
-			if(vars.includes('donorTotal')) {
-				$('.inputChoiceDonor' + pk + 'DonorTotal').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'DonorTotal').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorTotal'));
-			}
-			var val = o['donorYtd'];
-			if(vars.includes('donorYtd')) {
-				$('.inputChoiceDonor' + pk + 'DonorYtd').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'DonorYtd').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorYtd'));
-			}
-			var val = o['donorQ1'];
-			if(vars.includes('donorQ1')) {
-				$('.inputChoiceDonor' + pk + 'DonorQ1').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'DonorQ1').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorQ1'));
-			}
-			var val = o['donorQ2'];
-			if(vars.includes('donorQ2')) {
-				$('.inputChoiceDonor' + pk + 'DonorQ2').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'DonorQ2').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorQ2'));
-			}
-			var val = o['donorQ3'];
-			if(vars.includes('donorQ3')) {
-				$('.inputChoiceDonor' + pk + 'DonorQ3').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'DonorQ3').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorQ3'));
-			}
-			var val = o['donorQ4'];
-			if(vars.includes('donorQ4')) {
-				$('.inputChoiceDonor' + pk + 'DonorQ4').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'DonorQ4').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorQ4'));
-			}
-			var val = o['donorLogoFilename'];
-			if(vars.includes('donorLogoFilename')) {
-				$('.inputChoiceDonor' + pk + 'DonorLogoFilename').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'DonorLogoFilename').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'DonorLogoFilename'));
-			}
-			var val = o['reportKeys'];
-			if(vars.includes('reportKeys')) {
-				$('.inputChoiceDonor' + pk + 'ReportKeys').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varChoiceDonor' + pk + 'ReportKeys').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputChoiceDonor' + pk + 'ReportKeys'));
+				addGlow($('.inputReportNarrative' + pk + 'NarrativeName'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
-				$('.inputChoiceDonor' + pk + 'InheritPk').each(function() {
+				$('.inputReportNarrative' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'InheritPk').each(function() {
+				$('.varReportNarrative' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'InheritPk'));
+				addGlow($('.inputReportNarrative' + pk + 'InheritPk'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
-				$('.inputChoiceDonor' + pk + 'ClassCanonicalName').each(function() {
+				$('.inputReportNarrative' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'ClassCanonicalName').each(function() {
+				$('.varReportNarrative' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'ClassCanonicalName'));
+				addGlow($('.inputReportNarrative' + pk + 'ClassCanonicalName'));
 			}
 			var val = o['classSimpleName'];
 			if(vars.includes('classSimpleName')) {
-				$('.inputChoiceDonor' + pk + 'ClassSimpleName').each(function() {
+				$('.inputReportNarrative' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'ClassSimpleName').each(function() {
+				$('.varReportNarrative' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'ClassSimpleName'));
+				addGlow($('.inputReportNarrative' + pk + 'ClassSimpleName'));
 			}
 			var val = o['classCanonicalNames'];
 			if(vars.includes('classCanonicalNames')) {
-				$('.inputChoiceDonor' + pk + 'ClassCanonicalNames').each(function() {
+				$('.inputReportNarrative' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'ClassCanonicalNames').each(function() {
+				$('.varReportNarrative' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'ClassCanonicalNames'));
+				addGlow($('.inputReportNarrative' + pk + 'ClassCanonicalNames'));
 			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
-				$('.inputChoiceDonor' + pk + 'SessionId').each(function() {
+				$('.inputReportNarrative' + pk + 'SessionId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'SessionId').each(function() {
+				$('.varReportNarrative' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'SessionId'));
+				addGlow($('.inputReportNarrative' + pk + 'SessionId'));
 			}
 			var val = o['userKey'];
 			if(vars.includes('userKey')) {
-				$('.inputChoiceDonor' + pk + 'UserKey').each(function() {
+				$('.inputReportNarrative' + pk + 'UserKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'UserKey').each(function() {
+				$('.varReportNarrative' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'UserKey'));
+				addGlow($('.inputReportNarrative' + pk + 'UserKey'));
 			}
 			var val = o['saves'];
 			if(vars.includes('saves')) {
-				$('.inputChoiceDonor' + pk + 'Saves').each(function() {
+				$('.inputReportNarrative' + pk + 'Saves').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'Saves').each(function() {
+				$('.varReportNarrative' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'Saves'));
+				addGlow($('.inputReportNarrative' + pk + 'Saves'));
 			}
 			var val = o['objectTitle'];
 			if(vars.includes('objectTitle')) {
-				$('.inputChoiceDonor' + pk + 'ObjectTitle').each(function() {
+				$('.inputReportNarrative' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'ObjectTitle').each(function() {
+				$('.varReportNarrative' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'ObjectTitle'));
+				addGlow($('.inputReportNarrative' + pk + 'ObjectTitle'));
 			}
 			var val = o['objectSuggest'];
 			if(vars.includes('objectSuggest')) {
-				$('.inputChoiceDonor' + pk + 'ObjectSuggest').each(function() {
+				$('.inputReportNarrative' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'ObjectSuggest').each(function() {
+				$('.varReportNarrative' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'ObjectSuggest'));
+				addGlow($('.inputReportNarrative' + pk + 'ObjectSuggest'));
 			}
 			var val = o['objectText'];
 			if(vars.includes('objectText')) {
-				$('.inputChoiceDonor' + pk + 'ObjectText').each(function() {
+				$('.inputReportNarrative' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'ObjectText').each(function() {
+				$('.varReportNarrative' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'ObjectText'));
+				addGlow($('.inputReportNarrative' + pk + 'ObjectText'));
 			}
 			var val = o['pageUrlId'];
 			if(vars.includes('pageUrlId')) {
-				$('.inputChoiceDonor' + pk + 'PageUrlId').each(function() {
+				$('.inputReportNarrative' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'PageUrlId').each(function() {
+				$('.varReportNarrative' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'PageUrlId'));
+				addGlow($('.inputReportNarrative' + pk + 'PageUrlId'));
 			}
 			var val = o['pageUrlPk'];
 			if(vars.includes('pageUrlPk')) {
-				$('.inputChoiceDonor' + pk + 'PageUrlPk').each(function() {
+				$('.inputReportNarrative' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'PageUrlPk').each(function() {
+				$('.varReportNarrative' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'PageUrlPk'));
+				addGlow($('.inputReportNarrative' + pk + 'PageUrlPk'));
 			}
 			var val = o['pageUrlApi'];
 			if(vars.includes('pageUrlApi')) {
-				$('.inputChoiceDonor' + pk + 'PageUrlApi').each(function() {
+				$('.inputReportNarrative' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'PageUrlApi').each(function() {
+				$('.varReportNarrative' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'PageUrlApi'));
+				addGlow($('.inputReportNarrative' + pk + 'PageUrlApi'));
 			}
 			var val = o['id'];
 			if(vars.includes('id')) {
-				$('.inputChoiceDonor' + pk + 'Id').each(function() {
+				$('.inputReportNarrative' + pk + 'Id').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varChoiceDonor' + pk + 'Id').each(function() {
+				$('.varReportNarrative' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputChoiceDonor' + pk + 'Id'));
+				addGlow($('.inputReportNarrative' + pk + 'Id'));
 			}
 		});
 	}
@@ -1385,7 +1057,7 @@ function pageGraph(apiRequest) {
 				});
 				data.push(trace);
 			} else if(range) {
-				layout['title'] = 'ChoiceDonor';
+				layout['title'] = 'ReportNarrative';
 				layout['xaxis'] = {
 					title: rangeVarFq.displayName
 				}

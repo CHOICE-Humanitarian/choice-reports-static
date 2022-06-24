@@ -1,3 +1,8 @@
+
+//////////
+// site //
+//////////
+
 $(window).on('load', function() {
     $(document).click(function(e) {
             var $target = $(e.target);
@@ -6,6 +11,176 @@ $(window).on('load', function() {
             }
     });
 });
+
+function paramChange(elem) {
+	var $elem = $(elem);
+	if($elem.val())
+		$elem.next().text($elem.attr('data-var') + "=" + encodeURIComponent($elem.val()));
+	else
+		$elem.next().text("");
+	searchPage();
+}
+
+function qChange(elem) {
+	var $elem = $(elem);
+	if($elem.val())
+		$elem.next().text("q=" + $elem.attr('data-var') + ":" + encodeURIComponent($elem.val()));
+	else
+		$elem.next().text("");
+	searchPage();
+}
+
+function fqChange(elem) {
+	var $elem = $(elem);
+	if($elem.val())
+		$("#pageSearchVal-" + $(elem).attr("id")).text("fq=" + $elem.attr('data-var') + ":" + encodeURIComponent($elem.val()));
+	else
+		$("#pageSearchVal-" + $(elem).attr("id")).text("");
+	searchPage();
+}
+
+function fqReplace(elem) {
+	var $fq = $('#fq' + elem.getAttribute('data-class') + '_' + elem.getAttribute('data-var'));
+	$fq.val(elem.getAttribute('data-val'));
+	fqChange($fq[0]);
+}
+
+function facetFieldChange(elem) {
+	var $elem = $(elem);
+	if($elem.attr("data-clear") === "false") {
+		$("#pageSearchVal-" + $(elem).attr("id")).text("facet.field=" + $elem.attr('data-var'));
+		$elem.attr("data-clear", "true");
+	} else {
+		$("#pageSearchVal-" + $(elem).attr("id")).text("");
+		$elem.attr("data-clear", "false");
+	}
+	searchPage();
+}
+
+function facetRangeChange(elem, classSimpleName) {
+	facetRangeVal = $("input[name='pageFacetRange']:checked").val();
+	if(facetRangeVal) {
+		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		$("#pageSearchVal-pageFacetRangeGap-" + classSimpleName).text("facet.range.gap=" + encodeURIComponent($("#pageFacetRangeGap-" + classSimpleName).val()));
+		$("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).text("facet.range.start=" + encodeURIComponent($("#pageFacetRangeStart-" + classSimpleName).val() + ":00.000[" + timeZone + "]"));
+		$("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).text("facet.range.end=" + encodeURIComponent($("#pageFacetRangeEnd-" + classSimpleName).val() + ":00.000[" + timeZone + "]"));
+		$("#pageSearchVal-pageFacetRangeVar-" + classSimpleName).text("facet.range={!tag=r1}" + encodeURIComponent(facetRangeVal));
+	} else {
+		$("#pageSearchVal-pageFacetRangeGap-" + classSimpleName).text("");
+		$("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).text("");
+		$("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).text("");
+		$("#pageSearchVal-pageFacetRangeVar-" + classSimpleName).text("");
+	}
+	searchPage();
+}
+
+function facetPivotChange(elem, classSimpleName) {
+	var $elem = $(elem);
+	var $listHidden = $("#pageSearchVal-Pivot" + classSimpleName + "Hidden");
+	if($elem.is(":checked")) {
+		$listHidden.append($("<div>")
+				.attr("id", "pageSearchVal-Pivot" + classSimpleName + "Hidden_" + $elem.val())
+				.attr("class", "pageSearchVal-Pivot" + classSimpleName + "Hidden ")
+				.text($elem.val())
+				)
+				;
+	} else {
+		$("#pageSearchVal-Pivot" + classSimpleName + "Hidden_" + $elem.val()).remove();
+	}
+	$("#pageSearchVal-Pivot" + classSimpleName + "_1").remove();
+	var $list = $("#pageSearchVal-Pivot" + classSimpleName);
+	var $listHidden = $("#pageSearchVal-Pivot" + classSimpleName + "Hidden");
+	if($listHidden.children().length > 0) {
+		$list.append($("<div>")
+				.attr("id", "pageSearchVal-Pivot" + classSimpleName + "_1")
+				.attr("class", "pageSearchVal pageSearchVal-Pivot" + classSimpleName + " ")
+				.text("facet.pivot={!range=r1}" + $elem.val())
+				)
+				;
+	}
+	searchPage();
+}
+
+function facetFieldListChange(elem, classSimpleName) {
+	var $elem = $(elem);
+	var $listHidden = $("#pageSearchVal-FieldList" + classSimpleName + "Hidden");
+	if($elem.is(":checked")) {
+		$listHidden.append($("<div>")
+				.attr("id", "pageSearchVal-FieldList" + classSimpleName + "Hidden_" + $elem.val())
+				.attr("class", "pageSearchVal-FieldList" + classSimpleName + "Hidden ")
+				.text($elem.val())
+				)
+				;
+	} else {
+		$("#pageSearchVal-FieldList" + classSimpleName + "Hidden_" + $elem.val()).remove();
+	}
+	$("#pageSearchVal-FieldList" + classSimpleName + "_1").remove();
+	var $list = $("#pageSearchVal-FieldList" + classSimpleName);
+	var $listHidden = $("#pageSearchVal-FieldList" + classSimpleName + "Hidden");
+	if($listHidden.children().length > 0) {
+		$list.append($("<div>")
+				.attr("id", "pageSearchVal-FieldList" + classSimpleName + "_1")
+				.attr("class", "pageSearchVal pageSearchVal-FieldList" + classSimpleName + " ")
+				.text("fl=" + $listHidden.children().toArray().map(elem => elem.innerText).join(","))
+				)
+				;
+	}
+	searchPage();
+}
+
+function facetStatsChange(elem, classSimpleName) {
+	var $elem = $(elem);
+	var $list = $("#pageSearchVal-Stats" + classSimpleName);
+	if($elem.is(":checked")) {
+		$list.append($("<div>")
+				.attr("id", "pageSearchVal-Stats" + classSimpleName + "_" + $elem.val())
+				.attr("class", "pageSearchVal pageSearchVal-Stats" + classSimpleName + "_" + $elem.val() + " ")
+				.text("stats.field=" + $elem.val())
+				)
+				;
+	} else {
+		$("#pageSearchVal-Stats" + classSimpleName + "_" + $elem.val()).remove();
+	}
+	searchPage();
+}
+
+function searchPage() {
+	var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
+	var uri = location.pathname + queryParams;
+	$.get(uri, {}, function(data) {
+		var $response = $("<html/>").html(data);
+		$('.pageFacetField').each(function(index, facetField) {
+			var $facetField = $(facetField);
+			$facetField.replaceWith($response.find("." + $facetField.attr("id")));
+		});
+		$('.pageStatsField').each(function(index, statsField) {
+			var $statsField = $(statsField);
+			$statsField.replaceWith($response.find("." + $statsField.attr("id")));
+		});
+		$(".pageContent").replaceWith($response.find(".pageContent"));
+		pageGraph();
+	}, 'html');
+	window.history.replaceState('', '', uri);
+}
+
+function searchEscapeQueryChars(s) {
+	var sb = "";
+	for (let i = 0; i < s.length; i++) {
+		var c = s[i];
+		// These characters are part of the query syntax and must be escaped
+		if (c == '\\' || c == '+' || c == '-' || c == '!' || c == '(' || c == ')' || c == ':' || c == '^'
+				|| c == '[' || c == ']' || c == '\"' || c == '{' || c == '}' || c == '~' || c == '*' || c == '?'
+				|| c == '|' || c == '&' || c == ';' || c == '/' || /\s/.test(c)) {
+			sb += '\\';
+		}
+		sb += c;
+	}
+	return sb;
+}
+
+///////////
+// other //
+///////////
 
 $(document).keypress(function(e) {
     if (e.keyCode == 27) {
@@ -62,7 +237,7 @@ function ajouterRemplacer($input) {
     return false; 
 }
 
-function rechercher($input) {
+function search($input) {
     $form = $input.closest('form');
     $icone = $input.prev('i');
     $icone.addClass('w3-spin-fast');

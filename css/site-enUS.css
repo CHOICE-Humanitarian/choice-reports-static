@@ -15,9 +15,17 @@ h6,.h6 { font-size: 1.1em; font-weight: 500; }
 dt { display: inline; margin: 0; padding: 0; font-family: "PT Serif", sans-serif; font-size: 0.9em; }
 label { font-family: "PT Serif", sans-serif; font-size: 0.9em; }
 */
-dd { display: inline; margin: 0; padding: 0; }
+dt { display: inline; margin: 0; padding: 0; font-weight: bold; }
+dt:after { content: ': '; }
+dd { display: inline; margin: 0; padding: 0; font-style: italic; }
 i { font-weight: normal; }
 body {  }
+ul.w3-bar { padding-left: 0; }
+.display-none { display: none; }
+.min-width-300px { min-width: 300px; }
+.cursor-pointer { cursor: pointer; }
+.pageFacetField { margin: 0; }
+.hover-box-shadow:hover { box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4),0 6px 20px 0 rgba(0,0,0,0.39); }
 .menu {display: none; }
 .bgimg {
     background-repeat: no-repeat;
