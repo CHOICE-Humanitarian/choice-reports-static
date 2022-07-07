@@ -1112,7 +1112,15 @@ function pageGraph(apiRequest) {
 			var layout = {};
 			if(pivot1VarFq.classSimpleName === 'Point') {
 				layout['dragmode'] = 'zoom';
-				layout['mapbox'] = { style: 'open-street-map', center: { lat: 55.61888, lon: 13.548799 }, zoom: 11 };
+				layout['uirevision'] = 'true';
+				if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+					layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+				else if(window['DEFAULT_MAP_ZOOM'])
+					layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+				else if(window['DEFAULT_MAP_LOCATION'])
+					layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
+				else
+					layout['mapbox'] = { style: 'open-street-map' };
 				layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 				var trace = {};
 				trace['type'] = 'scattermapbox';
@@ -1165,7 +1173,25 @@ function pageGraph(apiRequest) {
 					data.push(trace);
 				});
 			}
-			Plotly.newPlot('htmBodyGraphPageLayout', data, layout);
+			Plotly.react('htmBodyGraphPageLayout', data, layout);
 		}
 	}
+}
+
+function animateStats() {
+	let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
+	let xStep = parseFloat($('#animateStatsStep').val());
+	let xMin = parseFloat($('#animateStatsMin').val());
+	let xMax = parseFloat($('#animateStatsMax').val());
+	let x = xMin;
+
+	let animateInterval = window.setInterval(() => {
+	x = x + xStep;
+	if (x > xMax || x < 0) {
+		clearInterval(animateInterval);
+	}
+	$('#fqVehicleStep_time').val(x);
+	$('#fqVehicleStep_time').change();
+	searchPage();
+	}, speedRate);
 }

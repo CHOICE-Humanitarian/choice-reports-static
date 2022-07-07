@@ -73,6 +73,22 @@ async function postReportNarrative($formValues, success, error) {
 	if(valueNarrativeName != null && valueNarrativeName !== '')
 		vals['narrativeName'] = valueNarrativeName;
 
+	var valueFirstDueDate = $formValues.find('.valueFirstDueDate').val();
+	if(valueFirstDueDate != null && valueFirstDueDate !== '')
+		vals['firstDueDate'] = valueFirstDueDate;
+
+	var valueDataPullDate = $formValues.find('.valueDataPullDate').val();
+	if(valueDataPullDate != null && valueDataPullDate !== '')
+		vals['dataPullDate'] = valueDataPullDate;
+
+	var valuePullStartDate = $formValues.find('.valuePullStartDate').val();
+	if(valuePullStartDate != null && valuePullStartDate !== '')
+		vals['pullStartDate'] = valuePullStartDate;
+
+	var valuePullEndDate = $formValues.find('.valuePullEndDate').val();
+	if(valuePullEndDate != null && valuePullEndDate !== '')
+		vals['pullEndDate'] = valuePullEndDate;
+
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
@@ -217,6 +233,94 @@ async function patchReportNarrative($formFilters, $formValues, pk, success, erro
 	if(removeNarrativeName != null && removeNarrativeName !== '')
 		vals['removeNarrativeName'] = removeNarrativeName;
 
+	var valueFirstDueDate = $formValues.find('.valueFirstDueDate').val();
+	var removeFirstDueDate = $formValues.find('.removeFirstDueDate').val() === 'true';
+	var setFirstDueDate = removeFirstDueDate ? null : $formValues.find('.setFirstDueDate').val();
+	var addFirstDueDate = $formValues.find('.addFirstDueDate').val();
+	var setMoment = setFirstDueDate ? moment(setFirstDueDate, 'MM/DD/YYYY') : null; 
+	var addMoment = addFirstDueDate ? moment(addFirstDueDate, 'MM/DD/YYYY') : null; 
+	if(setMoment) { 
+		var s = setMoment.format('YYYY-MM-DD'); 
+		setFirstDueDate = s;
+	} 
+	if(addMoment) { 
+		var s = addMoment.format('YYYY-MM-DD'); 
+		addFirstDueDate = s;
+	} 
+	if(removeFirstDueDate || setFirstDueDate != null && setFirstDueDate !== '')
+		vals['setFirstDueDate'] = setFirstDueDate;
+	if(addFirstDueDate != null && addFirstDueDate !== '')
+		vals['addFirstDueDate'] = addFirstDueDate;
+	var removeFirstDueDate = $formValues.find('.removeFirstDueDate').val();
+	if(removeFirstDueDate != null && removeFirstDueDate !== '')
+		vals['removeFirstDueDate'] = removeFirstDueDate;
+
+	var valueDataPullDate = $formValues.find('.valueDataPullDate').val();
+	var removeDataPullDate = $formValues.find('.removeDataPullDate').val() === 'true';
+	var setDataPullDate = removeDataPullDate ? null : $formValues.find('.setDataPullDate').val();
+	var addDataPullDate = $formValues.find('.addDataPullDate').val();
+	var setMoment = setDataPullDate ? moment(setDataPullDate, 'MM/DD/YYYY') : null; 
+	var addMoment = addDataPullDate ? moment(addDataPullDate, 'MM/DD/YYYY') : null; 
+	if(setMoment) { 
+		var s = setMoment.format('YYYY-MM-DD'); 
+		setDataPullDate = s;
+	} 
+	if(addMoment) { 
+		var s = addMoment.format('YYYY-MM-DD'); 
+		addDataPullDate = s;
+	} 
+	if(removeDataPullDate || setDataPullDate != null && setDataPullDate !== '')
+		vals['setDataPullDate'] = setDataPullDate;
+	if(addDataPullDate != null && addDataPullDate !== '')
+		vals['addDataPullDate'] = addDataPullDate;
+	var removeDataPullDate = $formValues.find('.removeDataPullDate').val();
+	if(removeDataPullDate != null && removeDataPullDate !== '')
+		vals['removeDataPullDate'] = removeDataPullDate;
+
+	var valuePullStartDate = $formValues.find('.valuePullStartDate').val();
+	var removePullStartDate = $formValues.find('.removePullStartDate').val() === 'true';
+	var setPullStartDate = removePullStartDate ? null : $formValues.find('.setPullStartDate').val();
+	var addPullStartDate = $formValues.find('.addPullStartDate').val();
+	var setMoment = setPullStartDate ? moment(setPullStartDate, 'MM/DD/YYYY') : null; 
+	var addMoment = addPullStartDate ? moment(addPullStartDate, 'MM/DD/YYYY') : null; 
+	if(setMoment) { 
+		var s = setMoment.format('YYYY-MM-DD'); 
+		setPullStartDate = s;
+	} 
+	if(addMoment) { 
+		var s = addMoment.format('YYYY-MM-DD'); 
+		addPullStartDate = s;
+	} 
+	if(removePullStartDate || setPullStartDate != null && setPullStartDate !== '')
+		vals['setPullStartDate'] = setPullStartDate;
+	if(addPullStartDate != null && addPullStartDate !== '')
+		vals['addPullStartDate'] = addPullStartDate;
+	var removePullStartDate = $formValues.find('.removePullStartDate').val();
+	if(removePullStartDate != null && removePullStartDate !== '')
+		vals['removePullStartDate'] = removePullStartDate;
+
+	var valuePullEndDate = $formValues.find('.valuePullEndDate').val();
+	var removePullEndDate = $formValues.find('.removePullEndDate').val() === 'true';
+	var setPullEndDate = removePullEndDate ? null : $formValues.find('.setPullEndDate').val();
+	var addPullEndDate = $formValues.find('.addPullEndDate').val();
+	var setMoment = setPullEndDate ? moment(setPullEndDate, 'MM/DD/YYYY') : null; 
+	var addMoment = addPullEndDate ? moment(addPullEndDate, 'MM/DD/YYYY') : null; 
+	if(setMoment) { 
+		var s = setMoment.format('YYYY-MM-DD'); 
+		setPullEndDate = s;
+	} 
+	if(addMoment) { 
+		var s = addMoment.format('YYYY-MM-DD'); 
+		addPullEndDate = s;
+	} 
+	if(removePullEndDate || setPullEndDate != null && setPullEndDate !== '')
+		vals['setPullEndDate'] = setPullEndDate;
+	if(addPullEndDate != null && addPullEndDate !== '')
+		vals['addPullEndDate'] = addPullEndDate;
+	var removePullEndDate = $formValues.find('.removePullEndDate').val();
+	if(removePullEndDate != null && removePullEndDate !== '')
+		vals['removePullEndDate'] = removePullEndDate;
+
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -321,6 +425,22 @@ function patchReportNarrativeFilters($formFilters) {
 		if(filterNarrativeName != null && filterNarrativeName !== '')
 			filters.push({ name: 'fq', value: 'narrativeName:' + filterNarrativeName });
 
+		var filterFirstDueDate = $formFilters.find('.valueFirstDueDate').val();
+		if(filterFirstDueDate != null && filterFirstDueDate !== '')
+			filters.push({ name: 'fq', value: 'firstDueDate:' + filterFirstDueDate });
+
+		var filterDataPullDate = $formFilters.find('.valueDataPullDate').val();
+		if(filterDataPullDate != null && filterDataPullDate !== '')
+			filters.push({ name: 'fq', value: 'dataPullDate:' + filterDataPullDate });
+
+		var filterPullStartDate = $formFilters.find('.valuePullStartDate').val();
+		if(filterPullStartDate != null && filterPullStartDate !== '')
+			filters.push({ name: 'fq', value: 'pullStartDate:' + filterPullStartDate });
+
+		var filterPullEndDate = $formFilters.find('.valuePullEndDate').val();
+		if(filterPullEndDate != null && filterPullEndDate !== '')
+			filters.push({ name: 'fq', value: 'pullEndDate:' + filterPullEndDate });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -376,6 +496,10 @@ function patchReportNarrativeFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterAssigneeName = $formFilters.find('.valueAssigneeName').val();
+		if(filterAssigneeName != null && filterAssigneeName !== '')
+			filters.push({ name: 'fq', value: 'assigneeName:' + filterAssigneeName });
 	}
 	return filters;
 }
@@ -475,6 +599,22 @@ function searchReportNarrativeFilters($formFilters) {
 		if(filterNarrativeName != null && filterNarrativeName !== '')
 			filters.push({ name: 'fq', value: 'narrativeName:' + filterNarrativeName });
 
+		var filterFirstDueDate = $formFilters.find('.valueFirstDueDate').val();
+		if(filterFirstDueDate != null && filterFirstDueDate !== '')
+			filters.push({ name: 'fq', value: 'firstDueDate:' + filterFirstDueDate });
+
+		var filterDataPullDate = $formFilters.find('.valueDataPullDate').val();
+		if(filterDataPullDate != null && filterDataPullDate !== '')
+			filters.push({ name: 'fq', value: 'dataPullDate:' + filterDataPullDate });
+
+		var filterPullStartDate = $formFilters.find('.valuePullStartDate').val();
+		if(filterPullStartDate != null && filterPullStartDate !== '')
+			filters.push({ name: 'fq', value: 'pullStartDate:' + filterPullStartDate });
+
+		var filterPullEndDate = $formFilters.find('.valuePullEndDate').val();
+		if(filterPullEndDate != null && filterPullEndDate !== '')
+			filters.push({ name: 'fq', value: 'pullEndDate:' + filterPullEndDate });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -530,6 +670,10 @@ function searchReportNarrativeFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterAssigneeName = $formFilters.find('.valueAssigneeName').val();
+		if(filterAssigneeName != null && filterAssigneeName !== '')
+			filters.push({ name: 'fq', value: 'assigneeName:' + filterAssigneeName });
 	}
 	return filters;
 }
@@ -819,6 +963,54 @@ async function websocketReportNarrativeInner(apiRequest) {
 				});
 				addGlow($('.inputReportNarrative' + pk + 'NarrativeName'));
 			}
+			var val = o['firstDueDate'];
+			if(vars.includes('firstDueDate')) {
+				$('.inputReportNarrative' + pk + 'FirstDueDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varReportNarrative' + pk + 'FirstDueDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputReportNarrative' + pk + 'FirstDueDate'));
+			}
+			var val = o['dataPullDate'];
+			if(vars.includes('dataPullDate')) {
+				$('.inputReportNarrative' + pk + 'DataPullDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varReportNarrative' + pk + 'DataPullDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputReportNarrative' + pk + 'DataPullDate'));
+			}
+			var val = o['pullStartDate'];
+			if(vars.includes('pullStartDate')) {
+				$('.inputReportNarrative' + pk + 'PullStartDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varReportNarrative' + pk + 'PullStartDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputReportNarrative' + pk + 'PullStartDate'));
+			}
+			var val = o['pullEndDate'];
+			if(vars.includes('pullEndDate')) {
+				$('.inputReportNarrative' + pk + 'PullEndDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varReportNarrative' + pk + 'PullEndDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputReportNarrative' + pk + 'PullEndDate'));
+			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputReportNarrative' + pk + 'InheritPk').each(function() {
@@ -987,6 +1179,18 @@ async function websocketReportNarrativeInner(apiRequest) {
 				});
 				addGlow($('.inputReportNarrative' + pk + 'Id'));
 			}
+			var val = o['assigneeName'];
+			if(vars.includes('assigneeName')) {
+				$('.inputReportNarrative' + pk + 'AssigneeName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varReportNarrative' + pk + 'AssigneeName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputReportNarrative' + pk + 'AssigneeName'));
+			}
 		});
 	}
 }
@@ -1022,7 +1226,15 @@ function pageGraph(apiRequest) {
 			var layout = {};
 			if(pivot1VarFq.classSimpleName === 'Point') {
 				layout['dragmode'] = 'zoom';
-				layout['mapbox'] = { style: 'open-street-map', center: { lat: 55.61888, lon: 13.548799 }, zoom: 11 };
+				layout['uirevision'] = 'true';
+				if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+					layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+				else if(window['DEFAULT_MAP_ZOOM'])
+					layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+				else if(window['DEFAULT_MAP_LOCATION'])
+					layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
+				else
+					layout['mapbox'] = { style: 'open-street-map' };
 				layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 				var trace = {};
 				trace['type'] = 'scattermapbox';
@@ -1075,7 +1287,25 @@ function pageGraph(apiRequest) {
 					data.push(trace);
 				});
 			}
-			Plotly.newPlot('htmBodyGraphBaseModelPage', data, layout);
+			Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 		}
 	}
+}
+
+function animateStats() {
+	let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
+	let xStep = parseFloat($('#animateStatsStep').val());
+	let xMin = parseFloat($('#animateStatsMin').val());
+	let xMax = parseFloat($('#animateStatsMax').val());
+	let x = xMin;
+
+	let animateInterval = window.setInterval(() => {
+	x = x + xStep;
+	if (x > xMax || x < 0) {
+		clearInterval(animateInterval);
+	}
+	$('#fqVehicleStep_time').val(x);
+	$('#fqVehicleStep_time').change();
+	searchPage();
+	}, speedRate);
 }

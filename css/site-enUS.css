@@ -1,16 +1,16 @@
-body, html { font-size: 1.0em; }
+body, html { font-family: "Bellefair", sans-serif; font-size: 1.2em; }
 h1,h2,h3,h4,h5,h6 { margin: 0; }
 /*
 body {font-family: "Bellefair", sans-serif; }
 h1,h3,h5 {font-family: "Stint Ultra Condensed", sans-serif; line-height: 1.2; }
 h2,h4,h6 {font-family: "Jomhuria", sans-serif; line-height: 0.9; }
 */
-h1,.h1 { font-size: 3.5em; font-weight: 500; }
-h2,.h2 { font-size: 2.0em; font-weight: 500; }
-h3,.h3 { font-size: 1.5em; font-weight: 500; }
-h4,.h4 { font-size: 1.3em; font-weight: 500; }
-h5,.h5 { font-size: 1.2em; font-weight: 500; }
-h6,.h6 { font-size: 1.1em; font-weight: 500; }
+h1,.h1 { font-family: "Stint Ultra Condensed", serif; font-size: 2.0em; }
+h2,.h2 { font-family: "Jomhuria", sans-serif; font-size: 2.0em; }
+h3,.h3 { font-family: "Stint Ultra Condensed", serif; font-size: 1.7em; }
+h4,.h4 { font-family: "Jomhuria", sans-serif; font-size: 1.7em; }
+h5,.h5 { font-family: "Stint Ultra Condensed", serif; font-size: 1.3em; }
+h6,.h6 { font-family: "Jomhuria", sans-serif; font-size: 1.3em; }
 /*
 dt { display: inline; margin: 0; padding: 0; font-family: "PT Serif", sans-serif; font-size: 0.9em; }
 label { font-family: "PT Serif", sans-serif; font-size: 0.9em; }
@@ -20,6 +20,7 @@ dt:after { content: ': '; }
 dd { display: inline; margin: 0; padding: 0; font-style: italic; }
 i { font-weight: normal; }
 body {  }
+.padding-right-quarter-em { padding-right: 0.25em; }
 ul.w3-bar { padding-left: 0; }
 .display-none { display: none; }
 .min-width-300px { min-width: 300px; }
@@ -238,11 +239,79 @@ pre, .site-cmd-complet {
 }
 site-header-image-custom {
 }
+
+/* Review */
+
+.review1Table i {
+	color:#08232E;
+}
+.review1Table {
+	border-collapse:collapse;border-spacing:0;width:100%;display:table;font-family: "Stint Ultra Condensed", sans-serif;
+	color:#fff;
+}
+.review1Table tr td {
+	text-align:center;
+	padding: 5px;
+}
+.review1Table tr td.odd {
+	background-color:#2E6E87;
+}
+.review1Table tr td.even {
+	background-color:#BEDCE9;color:#142E39;
+}
+.review1Table tr td {
+	text-align:center;
+}
 @media (max-width:600px){
-	.recapituler2TableTr td {
+	.review1Table tr td {
 		display:block;width:100%!important;
 	}
 }
+.review1TableTr1Td1 {
+	color:#BEDCE9;font-size:64px;font-family: "Stint Ultra Condensed", sans-serif;width:20%;
+}
+.review1TableTr2Td1 {
+	font-size:32px;color:#fff;
+}
+.review1TableTr1Td2 {
+	font-size:70px;
+}
+.review1TableTr2Td2 {
+	font-size:32px;font-family:Stint Ultra Condensed;padding:0px 8px;
+}
+.review1TableTr1Td3 {
+	font-size:70px;
+}
+.review1TableTr2Td3 {
+	font-size:32px;font-family:Stint Ultra Condensed;padding:0px 8px;
+}
+.review1TableTr1Td4 {
+	font-size:64px;color:#08232E;font-weight: bold;width:20%;
+}
+.review1TableTr2Td4 {
+	font-size:32px;font-family: "Stint Ultra Condensed", sans-serif;
+}
+
+.review2Table {
+	border-collapse:collapse;border-spacing:0;width:100%;display:table;font-family: "Stint Ultra Condensed", sans-serif;
+}
+.review2Table i {
+	color:#08232E;
+	font-size:32px;
+	margin-left: 8px;
+}
+.review2Table svg {
+	color:#08232E;
+	font-size:32px;
+	margin-left: 8px;
+}
+.review2TableTr.odd td {
+	color:#fff;background-color:#2E6E87;font-size:30px;
+}
+.review2TableTr.even td {
+	color:#fff;background-color:#54A5C4;font-size:30px;
+}
+
 .w3-tooltip+.w3-text{display:none}.w3-tooltip:hover+.w3-text{display:inline-block}
 .w3-vivid-pink
 {color:#fff;background-color:#ffb5bA}
