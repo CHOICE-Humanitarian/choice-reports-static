@@ -79,6 +79,14 @@ function searchSiteUserFilters($formFilters) {
 		if(filterEventKeys != null && filterEventKeys !== '')
 			filters.push({ name: 'fq', value: 'eventKeys:' + filterEventKeys });
 
+		var filterPullOwnerReportScheduleKeys = $formFilters.find('.valuePullOwnerReportScheduleKeys').val();
+		if(filterPullOwnerReportScheduleKeys != null && filterPullOwnerReportScheduleKeys !== '')
+			filters.push({ name: 'fq', value: 'pullOwnerReportScheduleKeys:' + filterPullOwnerReportScheduleKeys });
+
+		var filterFinalOwnerReportScheduleKeys = $formFilters.find('.valueFinalOwnerReportScheduleKeys').val();
+		if(filterFinalOwnerReportScheduleKeys != null && filterFinalOwnerReportScheduleKeys !== '')
+			filters.push({ name: 'fq', value: 'finalOwnerReportScheduleKeys:' + filterFinalOwnerReportScheduleKeys });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -267,6 +275,78 @@ function suggestSiteUserEventKeys(filters, $list, pk = null, relate=true) {
 	searchReportEventVals(filters, success, error);
 }
 
+function suggestSiteUserPullOwnerReportScheduleKeys(filters, $list, pk = null, relate=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-calendar-days ');
+			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
+			$a.append($i);
+			$a.append($span);
+			var val = o['pullOwnerKey'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_pullOwnerReportScheduleKeys_' + pk + '_pullOwnerKey_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valuePullOwnerReportScheduleKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_pullOwnerReportScheduleKeys_" + pk + "_pullOwnerKey_" + o['pk'] + "'); patchSiteUserVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PullOwnerReportScheduleKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(relate)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#SiteUserForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchReportScheduleVals(filters, success, error);
+}
+
+function suggestSiteUserFinalOwnerReportScheduleKeys(filters, $list, pk = null, relate=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-calendar-days ');
+			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
+			$a.append($i);
+			$a.append($span);
+			var val = o['finalOwnerKey'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_finalOwnerReportScheduleKeys_' + pk + '_finalOwnerKey_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueFinalOwnerReportScheduleKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_finalOwnerReportScheduleKeys_" + pk + "_finalOwnerKey_" + o['pk'] + "'); patchSiteUserVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'FinalOwnerReportScheduleKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(relate)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#SiteUserForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchReportScheduleVals(filters, success, error);
+}
+
 // PATCH //
 
 async function patchSiteUser($formFilters, $formValues, pk, success, error) {
@@ -389,6 +469,14 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	var valueEventKeys = $formValues.find('input.valueEventKeys:checked').val();
 	if(valueEventKeys != null && valueEventKeys !== '')
 		vals['addEventKeys'] = valueEventKeys;
+
+	var valuePullOwnerReportScheduleKeys = $formValues.find('input.valuePullOwnerReportScheduleKeys:checked').val();
+	if(valuePullOwnerReportScheduleKeys != null && valuePullOwnerReportScheduleKeys !== '')
+		vals['addPullOwnerReportScheduleKeys'] = valuePullOwnerReportScheduleKeys;
+
+	var valueFinalOwnerReportScheduleKeys = $formValues.find('input.valueFinalOwnerReportScheduleKeys:checked').val();
+	if(valueFinalOwnerReportScheduleKeys != null && valueFinalOwnerReportScheduleKeys !== '')
+		vals['addFinalOwnerReportScheduleKeys'] = valueFinalOwnerReportScheduleKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
@@ -582,6 +670,14 @@ function patchSiteUserFilters($formFilters) {
 		if(filterEventKeys != null && filterEventKeys !== '')
 			filters.push({ name: 'fq', value: 'eventKeys:' + filterEventKeys });
 
+		var filterPullOwnerReportScheduleKeys = $formFilters.find('.valuePullOwnerReportScheduleKeys').val();
+		if(filterPullOwnerReportScheduleKeys != null && filterPullOwnerReportScheduleKeys !== '')
+			filters.push({ name: 'fq', value: 'pullOwnerReportScheduleKeys:' + filterPullOwnerReportScheduleKeys });
+
+		var filterFinalOwnerReportScheduleKeys = $formFilters.find('.valueFinalOwnerReportScheduleKeys').val();
+		if(filterFinalOwnerReportScheduleKeys != null && filterFinalOwnerReportScheduleKeys !== '')
+			filters.push({ name: 'fq', value: 'finalOwnerReportScheduleKeys:' + filterFinalOwnerReportScheduleKeys });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -751,6 +847,20 @@ async function postSiteUser($formValues, success, error) {
 	if(valueEventKeys.length > 0)
 		vals['eventKeys'] = valueEventKeys;
 
+	var valuePullOwnerReportScheduleKeys = [];
+	$formValues.find('input.valuePullOwnerReportScheduleKeys:checked').each(function(index) {
+		valuePullOwnerReportScheduleKeys.push($(this).val());
+	});
+	if(valuePullOwnerReportScheduleKeys.length > 0)
+		vals['pullOwnerReportScheduleKeys'] = valuePullOwnerReportScheduleKeys;
+
+	var valueFinalOwnerReportScheduleKeys = [];
+	$formValues.find('input.valueFinalOwnerReportScheduleKeys:checked').each(function(index) {
+		valueFinalOwnerReportScheduleKeys.push($(this).val());
+	});
+	if(valueFinalOwnerReportScheduleKeys.length > 0)
+		vals['finalOwnerReportScheduleKeys'] = valueFinalOwnerReportScheduleKeys;
+
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
@@ -895,6 +1005,20 @@ async function websocketSiteUser(success) {
 			$('#Page_eventKeys_add').removeClass('w3-disabled');
 			$('#Page_eventKeys_add').attr('disabled', false);
 		});
+
+		window.eventBus.registerHandler('websocketReportSchedule', function (error, message) {
+			$('#Page_pullOwnerReportScheduleKeys').trigger('oninput');
+			$('#Page_pullOwnerReportScheduleKeys_add').text('add a report schedule');
+			$('#Page_pullOwnerReportScheduleKeys_add').removeClass('w3-disabled');
+			$('#Page_pullOwnerReportScheduleKeys_add').attr('disabled', false);
+		});
+
+		window.eventBus.registerHandler('websocketReportSchedule', function (error, message) {
+			$('#Page_finalOwnerReportScheduleKeys').trigger('oninput');
+			$('#Page_finalOwnerReportScheduleKeys_add').text('add a report schedule');
+			$('#Page_finalOwnerReportScheduleKeys_add').removeClass('w3-disabled');
+			$('#Page_finalOwnerReportScheduleKeys_add').attr('disabled', false);
+		});
 	}
 }
 async function websocketSiteUserInner(apiRequest) {
@@ -1026,6 +1150,30 @@ async function websocketSiteUserInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'EventKeys'));
+			}
+			var val = o['pullOwnerReportScheduleKeys'];
+			if(vars.includes('pullOwnerReportScheduleKeys')) {
+				$('.inputSiteUser' + pk + 'PullOwnerReportScheduleKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'PullOwnerReportScheduleKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'PullOwnerReportScheduleKeys'));
+			}
+			var val = o['finalOwnerReportScheduleKeys'];
+			if(vars.includes('finalOwnerReportScheduleKeys')) {
+				$('.inputSiteUser' + pk + 'FinalOwnerReportScheduleKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'FinalOwnerReportScheduleKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'FinalOwnerReportScheduleKeys'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
@@ -1284,98 +1432,104 @@ async function websocketSiteUserInner(apiRequest) {
 }
 
 function pageGraph(apiRequest) {
-	var json = JSON.parse($('.pageForm .pageResponse').val());
-	if(json['facetCounts']) {
-		var facetCounts = json.facetCounts;
-		if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
-			var numPivots = json.responseHeader.params['facet.pivot'].split(',').length;
-			var range = facetCounts.facetRanges.ranges[Object.keys(facetCounts.facetRanges.ranges)[0]];
-			var rangeName;
-			var rangeVar;
-			var rangeVarFq;
-			var rangeCounts;
-			var rangeVals;
-			if(range) {
-				rangeName = range.name;
-				rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
-				rangeVarFq = window.varsFq[rangeVar];
-				rangeCounts = range.counts;
-				rangeVals = Object.keys(rangeCounts).map(key => key.substring(0, 10));
-			}
-			var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
-			var pivot1VarIndexed = pivot1Name;
-			if(pivot1VarIndexed.includes(','))
-				pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
-			var pivot1Var = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf('_'));
-			var pivot1VarFq = window.varsFq[pivot1Var];
-			var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
-			var pivot1Vals = Object.keys(pivot1Map);
-			var data = [];
-			var layout = {};
-			if(pivot1VarFq.classSimpleName === 'Point') {
-				layout['dragmode'] = 'zoom';
-				layout['uirevision'] = 'true';
-				if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-					layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-				else if(window['DEFAULT_MAP_ZOOM'])
-					layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-				else if(window['DEFAULT_MAP_LOCATION'])
-					layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-				else
-					layout['mapbox'] = { style: 'open-street-map' };
-				layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-				var trace = {};
-				trace['type'] = 'scattermapbox';
-				trace['marker'] = { color: 'fuchsia', size: 6 };
-				var lat = [];
-				var lon = [];
-				var text = [];
-				var customdata = [];
-				trace['lat'] = lat;
-				trace['lon'] = lon;
-				trace['text'] = text;
-				trace['customdata'] = customdata;
-				json.response.docs.forEach((record) => {
-					var location = record.fields[pivot1VarIndexed];
-					if(location) {
-						var locationParts = location.split(',');
-						text.push('pivot1Val');
-						lat.push(parseFloat(locationParts[0]));
-						lon.push(parseFloat(locationParts[1]));
-						var vals = {};
-						var hovertemplate = '';
-						Object.entries(window.varsFq).forEach(([key, data]) => {
-							if(data.displayName) {
-								vals[data.var] = record.fields[data.varStored];
-								hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-							}
-							customdata.push(vals);
-						});
-						customdata.push(vals);
-						trace['hovertemplate'] = hovertemplate;
-					}
-				});
-				data.push(trace);
-			} else if(range) {
-				layout['title'] = 'SiteUser';
-				layout['xaxis'] = {
-					title: rangeVarFq.displayName
+	var r = $('.pageForm .pageResponse').val();
+	if(r) {
+	var json = JSON.parse(r);
+		if(json['facetCounts']) {
+			var facetCounts = json.facetCounts;
+			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
+				var numPivots = json.responseHeader.params['facet.pivot'].split(',').length;
+				var range = facetCounts.facetRanges.ranges[Object.keys(facetCounts.facetRanges.ranges)[0]];
+				var rangeName;
+				var rangeVar;
+				var rangeVarFq;
+				var rangeCounts;
+				var rangeVals;
+				if(range) {
+					rangeName = range.name;
+					rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
+					rangeVarFq = window.varsFq[rangeVar];
+					rangeCounts = range.counts;
+					rangeVals = Object.keys(rangeCounts).map(key => key);
 				}
-				layout['yaxis'] = {
-					title: pivot1VarFq.displayName
-				}
-				pivot1Vals.forEach((pivot1Val) => {
-					var pivot1 = pivot1Map[pivot1Val];
-					var pivot1Counts = pivot1.ranges[rangeName].counts;
+				var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
+				var pivot1VarIndexed = pivot1Name;
+				if(pivot1VarIndexed.includes(','))
+					pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
+				var pivot1Var = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf('_'));
+				var pivot1VarFq = window.varsFq[pivot1Var] ? window.varsFq[pivot1Var] : 'classSimpleName';
+				var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
+				var pivot1Vals = Object.keys(pivot1Map);
+				var data = [];
+				var layout = {};
+				if(pivot1VarFq.classSimpleName === 'Point') {
+					layout['showlegend'] = true;
+					layout['dragmode'] = 'zoom';
+					layout['uirevision'] = 'true';
+					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+					else if(window['DEFAULT_MAP_ZOOM'])
+						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+					else if(window['DEFAULT_MAP_LOCATION'])
+						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
+					else
+						layout['mapbox'] = { style: 'open-street-map' };
+					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 					var trace = {};
-					trace['x'] = Object.keys(pivot1Counts).map(key => key.substring(0, 10));
-					trace['y'] = Object.values(pivot1Counts);
-					trace['mode'] = 'lines+markers';
-					trace['name'] = pivot1Val;
+					trace['showlegend'] = true;
+					trace['type'] = 'scattermapbox';
+					trace['marker'] = { color: 'fuchsia', size: 6 };
+					var lat = [];
+					var lon = [];
+					var text = [];
+					var customdata = [];
+					trace['lat'] = lat;
+					trace['lon'] = lon;
+					trace['text'] = text;
+					trace['customdata'] = customdata;
+					json.response.docs.forEach((record) => {
+						var location = record.fields[pivot1VarIndexed];
+						if(location) {
+							var locationParts = location.split(',');
+							text.push('pivot1Val');
+							lat.push(parseFloat(locationParts[0]));
+							lon.push(parseFloat(locationParts[1]));
+							var vals = {};
+							var hovertemplate = '';
+							Object.entries(window.varsFq).forEach(([key, data]) => {
+								if(data.displayName) {
+									vals[data.var] = record.fields[data.varStored];
+									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
+								}
+								customdata.push(vals);
+							});
+							customdata.push(vals);
+							trace['hovertemplate'] = hovertemplate;
+						}
+					});
 					data.push(trace);
-				});
+				} else if(range) {
+					layout['title'] = 'SiteUser';
+					layout['xaxis'] = {
+						title: rangeVarFq.displayName
+					}
+					layout['yaxis'] = {
+						title: pivot1VarFq.displayName
+					}
+					pivot1Vals.forEach((pivot1Val) => {
+						var pivot1 = pivot1Map[pivot1Val];
+						var pivot1Counts = pivot1.ranges[rangeName].counts;
+						var trace = {};
+						trace['showlegend'] = true;
+						trace['x'] = Object.keys(pivot1Counts).map(key => key);
+						trace['y'] = Object.values(pivot1Counts);
+						trace['mode'] = 'lines+markers';
+						trace['name'] = pivot1Val;
+						data.push(trace);
+					});
+				}
+				Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 			}
-			Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 		}
 	}
 }
